@@ -18,20 +18,22 @@ cmake_minimum_required(VERSION 2.6)
  
 project(Whitedrop)
 
+set(DIR_TO_INCLUDE)
 add_subdirectory(../engine/ engine)
-
 set(SRCS
 	${SRCS}
 	main.cpp
 )
- 
+include_directories(${DIR_TO_INCLUDE})
 
 add_executable(Whitedrop WIN32 ${HDRS} ${SRCS})
  
 set_target_properties(Whitedrop PROPERTIES DEBUG_POSTFIX _d)
 set(Boost_LIBRARIES "C:/OgreSDK/boost/lib/libboost_system-vc120-mt-gd-1_55.lib")
 MESSAGE(STATUS "Boost_LIBRARIES=${Boost_LIBRARIES}")
-target_link_libraries(Whitedrop ${OGRE_LIBRARIES} ${OIS_LIBRARIES} ${OGRE_Overlay_LIBRARIES} ${Boost_LIBRARIES} ${LIBS_PHYSX})
+MESSAGE(STATUS ${OGRE_Overlay_LIBRARIES})
+
+target_link_libraries(Whitedrop ${TARGET_LIBRARIES})
  
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/media)
@@ -59,34 +61,14 @@ if(WIN32)
 		CONFIGURATIONS Release RelWithDebInfo Debug
 	)
  
-	install(FILES ${CMAKE_SOURCE_DIR}/dist/bin/plugins.cfg
+	file(INSTALL ${CMAKE_SOURCE_DIR}/dist/bin/plugins.cfg
 		${CMAKE_SOURCE_DIR}/dist/bin/resources.cfg
-		DESTINATION bin
-		CONFIGURATIONS Release RelWithDebInfo
+		DESTINATION dist/bin
 	)
  
-	install(FILES ${CMAKE_SOURCE_DIR}/dist/bin/plugins_d.cfg
+	file(INSTALL ${CMAKE_SOURCE_DIR}/dist/bin/plugins_d.cfg
 		${CMAKE_SOURCE_DIR}/dist/bin/resources_d.cfg
-		DESTINATION bin
-		CONFIGURATIONS Debug
-	)
- 
-        # NOTE: for the 1.7.1 sdk the OIS dll is called OIS.dll instead of libOIS.dll
-        # so you'll have to change that to make it work with 1.7.1
-	install(FILES ${OGRE_PLUGIN_DIR_REL}/OgreMain.dll
-		${OGRE_PLUGIN_DIR_REL}/RenderSystem_Direct3D9.dll
-		${OGRE_PLUGIN_DIR_REL}/RenderSystem_GL.dll
-		${OGRE_PLUGIN_DIR_REL}/libOIS.dll
-		DESTINATION bin
-		CONFIGURATIONS Release RelWithDebInfo
-	)
- 
-	install(FILES ${OGRE_PLUGIN_DIR_DBG}/OgreMain_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_Direct3D9_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/RenderSystem_GL_d.dll
-		${OGRE_PLUGIN_DIR_DBG}/libOIS_d.dll
-		DESTINATION bin
-		CONFIGURATIONS Debug
+		DESTINATION dist/bin
 	)
  
    # as of sdk 1.7.2 we need to copy the boost dll's as well
@@ -102,6 +84,9 @@ if(WIN32)
       DESTINATION bin
       CONFIGURATIONS Debug
    )
+   add_custom_command(TARGET Whitedrop PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/dist/media $<TARGET_FILE_DIR:Whitedrop>)
 endif(WIN32)
 
 if(UNIX)
