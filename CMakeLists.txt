@@ -20,6 +20,7 @@ project(Whitedrop)
 
 set(DIR_TO_INCLUDE)
 add_subdirectory(../engine/ engine)
+add_subdirectory(./parser/ parser)
 set(SRCS
 	${SRCS}
 	main.cpp
@@ -84,9 +85,9 @@ if(WIN32)
       DESTINATION bin
       CONFIGURATIONS Debug
    )
-   add_custom_command(TARGET Whitedrop PRE_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       ${CMAKE_SOURCE_DIR}/dist/media $<TARGET_FILE_DIR:Whitedrop>)
+   # add_custom_command(TARGET Whitedrop PRE_BUILD
+   #                 COMMAND ${CMAKE_COMMAND} -E copy_directory
+   #                     ${CMAKE_SOURCE_DIR}/dist/media $<TARGET_FILE_DIR:Whitedrop>)
 endif(WIN32)
 
 if(UNIX)

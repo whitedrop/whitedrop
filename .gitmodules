@@ -1,3 +1,6 @@
 [submodule "engine"]
 	path = engine
 	url = git@github.com:whitedrop/engine.git
+[submodule "parser"]
+	path = parser
+	url = git@github.com:whitedrop/parser-json.git
