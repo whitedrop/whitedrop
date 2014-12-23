@@ -37,7 +37,7 @@ MESSAGE(STATUS ${OGRE_Overlay_LIBRARIES})
 target_link_libraries(Whitedrop ${TARGET_LIBRARIES})
  
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/media)
+# file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/media)
  
 # post-build copy for win32
 if(WIN32 AND NOT MINGW)
@@ -57,10 +57,10 @@ if(WIN32)
 		RUNTIME DESTINATION bin
 		CONFIGURATIONS All)
  
-	install(DIRECTORY ${CMAKE_SOURCE_DIR}/dist/Media
-		DESTINATION ./
-		CONFIGURATIONS Release RelWithDebInfo Debug
-	)
+	# install(DIRECTORY ${CMAKE_SOURCE_DIR}/dist/Media
+	# 	DESTINATION ./
+	# 	CONFIGURATIONS Release RelWithDebInfo Debug
+	# )
  
 	file(INSTALL ${CMAKE_SOURCE_DIR}/dist/bin/plugins.cfg
 		${CMAKE_SOURCE_DIR}/dist/bin/resources.cfg
@@ -85,9 +85,14 @@ if(WIN32)
       DESTINATION bin
       CONFIGURATIONS Debug
    )
-   # add_custom_command(TARGET Whitedrop PRE_BUILD
-   #                 COMMAND ${CMAKE_COMMAND} -E copy_directory
-   #                     ${CMAKE_SOURCE_DIR}/dist/media $<TARGET_FILE_DIR:Whitedrop>)
+   set(TARGET ${CMAKE_SOURCE_DIR}/dist/media)
+   set(LINK ${CMAKE_CURRENT_BINARY_DIR}/dist/media)
+   # set(COMMAND "mklink /J \"${LINK}\" \"${TARGET}\"")
+   # execute_process(COMMAND cmd.exe "/K ${COMMAND}" OUTPUT_VARIABLE LINK_OUTPUT ERROR_VARIABLE LINK_OUTPUT RESULT_VARIABLE LRESULT_VARIABLE)
+   # message(STATUS ${LRESULT_VARIABLE};${LINK_OUTPUT})
+   # message("cmd.exe"\ /K\ "${COMMAND}")
+
+   message("Please run in cmd, if you haven't done it yet mklink /J /D \"${LINK}\" \"${TARGET}\"")
 endif(WIN32)
 
 if(UNIX)
