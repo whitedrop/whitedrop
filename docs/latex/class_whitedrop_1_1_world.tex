@@ -1,0 +1,130 @@
+\hypertarget{class_whitedrop_1_1_world}{\section{Whitedrop\+:\+:World Class Reference}
+\label{class_whitedrop_1_1_world}\index{Whitedrop\+::\+World@{Whitedrop\+::\+World}}
+}
+
+
+represents a world w/ entities  
+
+
+
+
+{\ttfamily \#include $<$World.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_whitedrop_1_1_world_a3d3fd0896b742aaf814c8867d105f92b}{World} (Ogre\+::\+Scene\+Manager $\ast$scene\+Manager)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+\hypertarget{class_whitedrop_1_1_world_a171f4ed3b7bcb7a036c5baebe35e549a}{\hyperlink{class_whitedrop_1_1_world_a171f4ed3b7bcb7a036c5baebe35e549a}{World} (void)}\label{class_whitedrop_1_1_world_a171f4ed3b7bcb7a036c5baebe35e549a}
+
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+\hypertarget{class_whitedrop_1_1_world_a5929e9d24ff6095f1bfe0efa974b46e6}{virtual \hyperlink{class_whitedrop_1_1_world_a5929e9d24ff6095f1bfe0efa974b46e6}{$\sim$\+World} (void)}\label{class_whitedrop_1_1_world_a5929e9d24ff6095f1bfe0efa974b46e6}
+
+\begin{DoxyCompactList}\small\item\em default dtor \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_whitedrop_1_1_world_a27d989ee83186c9300e88456b01b5769}{add\+Entity} (\hyperlink{class_whitedrop_1_1_entity}{Entity} entity)
+\begin{DoxyCompactList}\small\item\em add an entity to the world \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_whitedrop_1_1_world_acea4a0564cf3155cd00036cc1544d228}{setup} (void)
+\begin{DoxyCompactList}\small\item\em setup world \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_whitedrop_1_1_world_aa1ad1877f62b000fa678f993440ff3fc}{update} (void)
+\begin{DoxyCompactList}\small\item\em update the world \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_whitedrop_1_1_world_a019e4754e71072b81ee123f28683c8ae}{set\+Scene\+Mgr} (Ogre\+::\+Scene\+Manager $\ast$scene\+Manager)
+\begin{DoxyCompactList}\small\item\em change scenemgr \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_whitedrop_1_1_world_ae50111576e92eaf266b91c409bc5647d}{Ogre\+::\+Scene\+Manager $\ast$ {\bfseries m\+Scene\+Mgr}}\label{class_whitedrop_1_1_world_ae50111576e92eaf266b91c409bc5647d}
+
+\item 
+\hypertarget{class_whitedrop_1_1_world_a30b8894f6d09cd07795d943aa80cf149}{std\+::vector$<$ \hyperlink{class_whitedrop_1_1_entity}{Entity} $>$ {\bfseries static\+Entities}}\label{class_whitedrop_1_1_world_a30b8894f6d09cd07795d943aa80cf149}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+represents a world w/ entities 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_whitedrop_1_1_world_a3d3fd0896b742aaf814c8867d105f92b}{\index{Whitedrop\+::\+World@{Whitedrop\+::\+World}!World@{World}}
+\index{World@{World}!Whitedrop\+::\+World@{Whitedrop\+::\+World}}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}Whitedrop\+::\+World\+::\+World (
+\begin{DoxyParamCaption}
+\item[{Ogre\+::\+Scene\+Manager $\ast$}]{scene\+Manager}
+\end{DoxyParamCaption}
+)}}\label{class_whitedrop_1_1_world_a3d3fd0896b742aaf814c8867d105f92b}
+
+
+ctor 
+
+creates a world with a scenemgr
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+Manager} & the scene manager \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_whitedrop_1_1_world_a27d989ee83186c9300e88456b01b5769}{\index{Whitedrop\+::\+World@{Whitedrop\+::\+World}!add\+Entity@{add\+Entity}}
+\index{add\+Entity@{add\+Entity}!Whitedrop\+::\+World@{Whitedrop\+::\+World}}
+\subsubsection[{add\+Entity}]{\setlength{\rightskip}{0pt plus 5cm}void Whitedrop\+::\+World\+::add\+Entity (
+\begin{DoxyParamCaption}
+\item[{{\bf Entity}}]{entity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_whitedrop_1_1_world_a27d989ee83186c9300e88456b01b5769}
+
+
+add an entity to the world 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & \mbox{[}the entity \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_whitedrop_1_1_world_a019e4754e71072b81ee123f28683c8ae}{\index{Whitedrop\+::\+World@{Whitedrop\+::\+World}!set\+Scene\+Mgr@{set\+Scene\+Mgr}}
+\index{set\+Scene\+Mgr@{set\+Scene\+Mgr}!Whitedrop\+::\+World@{Whitedrop\+::\+World}}
+\subsubsection[{set\+Scene\+Mgr}]{\setlength{\rightskip}{0pt plus 5cm}void Whitedrop\+::\+World\+::set\+Scene\+Mgr (
+\begin{DoxyParamCaption}
+\item[{Ogre\+::\+Scene\+Manager $\ast$}]{scene\+Manager}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_whitedrop_1_1_world_a019e4754e71072b81ee123f28683c8ae}
+
+
+change scenemgr 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+Manager} & the new scene manager \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_whitedrop_1_1_world_acea4a0564cf3155cd00036cc1544d228}{\index{Whitedrop\+::\+World@{Whitedrop\+::\+World}!setup@{setup}}
+\index{setup@{setup}!Whitedrop\+::\+World@{Whitedrop\+::\+World}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void Whitedrop\+::\+World\+::setup (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_whitedrop_1_1_world_acea4a0564cf3155cd00036cc1544d228}
+
+
+setup world 
+
+call every entity \hyperlink{class_whitedrop_1_1_world_acea4a0564cf3155cd00036cc1544d228}{setup()}, thereby attaching them to scenemgr \hypertarget{class_whitedrop_1_1_world_aa1ad1877f62b000fa678f993440ff3fc}{\index{Whitedrop\+::\+World@{Whitedrop\+::\+World}!update@{update}}
+\index{update@{update}!Whitedrop\+::\+World@{Whitedrop\+::\+World}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}bool Whitedrop\+::\+World\+::update (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_whitedrop_1_1_world_aa1ad1877f62b000fa678f993440ff3fc}
+
+
+update the world 
+
+call every dynamic entity \hyperlink{class_whitedrop_1_1_world_aa1ad1877f62b000fa678f993440ff3fc}{update()} method \begin{DoxyReturn}{Returns}
+done or not, if falsey should stop simulation 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Ogre\+S\+D\+K/\+Projects/whitedrop/engine/lib/\hyperlink{_world_8h}{World.\+h}\item 
+C\+:/\+Ogre\+S\+D\+K/\+Projects/whitedrop/engine/lib/World.\+cpp\end{DoxyCompactItemize}
