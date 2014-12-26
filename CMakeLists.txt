@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 2.6)
 project(Whitedrop)
 
 set(DIR_TO_INCLUDE)
-add_subdirectory(../engine/ engine)
+add_subdirectory(./engine/ engine)
 add_subdirectory(./parser/ parser)
 set(SRCS
 	${SRCS}

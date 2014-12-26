@@ -1,6 +1,6 @@
 #include <windows.h>
-#include "./parser/include/parser.h"
-#include "engine/lib/Whitedrop.h"
+#include "parser/include/parser.h"
+#include "engine/include/Whitedrop.h"
 #include <string>
 int WINAPI WinMain ( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd )
 {
