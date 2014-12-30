@@ -20,6 +20,7 @@ project(Whitedrop)
 
 set(DIR_TO_INCLUDE)
 add_subdirectory(./engine/ engine)
+add_subdirectory(./scripting/v8/ v8-scripting)
 add_subdirectory(./parser/ parser)
 set(SRCS
 	${SRCS}
