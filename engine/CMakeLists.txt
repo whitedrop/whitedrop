@@ -89,6 +89,8 @@ set(HDRS
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Entity.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/World.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Vector3.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/LOD.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/Chunk.h
 	PARENT_SCOPE
 )
  
@@ -98,6 +100,8 @@ set(SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Entity.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/World.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Vector3.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/LOD.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/Chunk.cpp
 	PARENT_SCOPE
 )
 

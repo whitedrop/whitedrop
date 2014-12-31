@@ -421,20 +421,30 @@ namespace Whitedrop {
 	}
 	void WhitedropEngine::setupWorld(void)
 	{
-		mWorld = World(mSceneMgr);
+		mWorld = World(mSceneMgr, this);
 	}
-	bool init() {
+
+	bool init()
+	{
 		engine.setupWorld();
 		return(true);
 	}
-	void WhitedropEngine::addEntity(Entity ent){
+
+	void WhitedropEngine::addEntity(Entity ent)
+	{
 		mWorld.addEntity(ent);
 	}
-   void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material)
-   {
-   		Entity ent = Entity(mesh, id, dims.getOgreVector(), position.getOgreVector(), material);
-   		engine.addEntity(ent);
-   }
+
+	Position2 WhitedropEngine::getCameraPosition()
+	{
+		return Position2(0, 0);
+	}
+
+   	void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material)
+   	{
+   			Entity ent = Entity(mesh, id, dims.getOgreVector(), position.getOgreVector(), material);
+   			engine.addEntity(ent);
+   	}
 
 	void run() {
 		try {

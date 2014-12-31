@@ -8,10 +8,12 @@
 
 #include "base.h"
 #include "Entity.h"
+
  /**
   * @namespace Whiterop
   */
 namespace Whitedrop {
+	class WhitedropEngine;
 	/**
 	 * @class World
 	 * @brief represents a world w/ entities
@@ -25,7 +27,7 @@ namespace Whitedrop {
 			 * 
 			 * @param sceneManager the scene manager
 			 */
-			World(Ogre::SceneManager* sceneManager);
+			World(Ogre::SceneManager* sceneManager, WhitedropEngine* engine);
 
 			/**
 			 * @brief default ctor
@@ -36,7 +38,8 @@ namespace Whitedrop {
 			 * @brief default dtor
 			 */
 			virtual ~World(void);
-	
+			
+			virtual WhitedropEngine* getEngine();
 			/**
 			 * @brief add an entity to the world
 			 * @details 
@@ -67,6 +70,7 @@ namespace Whitedrop {
 			
 		protected:
 			Ogre::SceneManager* mSceneMgr;
+			WhitedropEngine* mEngine;
 			std::vector<Entity> staticEntities;
 			// std::vector<Entity> dynamicEntities; TODO
 	};
