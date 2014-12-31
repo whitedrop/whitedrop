@@ -9,6 +9,7 @@
 #include "Vector3.h"
 #include "World.h"
 #include "Entity.h"
+#include "Chunk.h"
 
 /**
  * @namespace Whitedrop
@@ -67,6 +68,8 @@ namespace Whitedrop {
 			 * @deprecated
 			 */
 			virtual void setupWorld();
+
+			virtual Position2 getCameraPosition();
 			
 		protected:
 
