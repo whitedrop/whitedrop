@@ -1,0 +1,28 @@
+{
+	"worldName": "Basic Map",
+	"worldVersion": "0.1.0",
+	"entities": [
+		{
+			"posX": "0.0",
+			"posY": "0.0",
+			"posZ": "0.0",
+			"dimX": "10000.0",
+			"dimY": "2000.0",
+			"dimZ": "10000.0",
+			"id":	"0x2A",
+			"mesh": "wellington.mesh",
+			"material": "Examples/Rocky"
+		},
+		{
+			"posX": "50.0",
+			"posY": "50.0",
+			"posZ": "50.0",
+			"dimX": "100.0",
+			"dimY": "100.0",
+			"dimZ": "100.0",
+			"id":	"0x2B",
+			"mesh": "Monkey.mesh",
+			"material": "MonkeyMat"
+		}
+	]
+}
