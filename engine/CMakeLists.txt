@@ -91,6 +91,7 @@ set(HDRS
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Vector3.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/LOD.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Chunk.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/ObjectData.h
 	PARENT_SCOPE
 )
  
@@ -102,6 +103,7 @@ set(SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Vector3.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/LOD.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Chunk.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/ObjectData.cpp
 	PARENT_SCOPE
 )
 

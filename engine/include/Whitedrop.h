@@ -9,7 +9,6 @@
 #include "Vector3.h"
 #include "World.h"
 #include "Entity.h"
-#include "Chunk.h"
 
 /**
  * @namespace Whitedrop

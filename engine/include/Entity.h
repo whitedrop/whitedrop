@@ -12,8 +12,11 @@
 #define ENTITY_H
 
 #include "base.h"
+#include "ObjectData.h"
+
 /// @namespace Whitedrop
 namespace Whitedrop {
+	class Chunk;
 	/** @class Entity
 	* This parent type is a static entity which is shown and loaded into the Physics engine but never updated
 	*/
@@ -25,13 +28,15 @@ namespace Whitedrop {
 		 * This needs to be attached to a World after!
 		 * The material name is not the file name but the material name!
 		 * @ref WorldPage
-		 * @param mesh the name of the mesh for the object, file must be in media/meshes
+		 * @ref ObjectData
 		 * @param id an unique identifier for the object, shortest as possible
 		 * @param dimensions an Ogre::Vector3 which contains the dimensions in meter
 		 * @param position the Vector3 which contains it position 
-		 * @param material the material name
+		 * @param data a pointer to the corresponding ObjectData
+		 * @param chunk the chunk which this entity is attached to
 		 */
-		Entity(std::string mesh, std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, std::string material);
+		Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, Chunk* chunk);
+		
 		/**
 		 * @brief The copy constructor
 		 * @details A copy constr
@@ -83,14 +88,13 @@ namespace Whitedrop {
 		virtual bool update(void);
 
 	protected:
-		std::string 			mMesh = "cube.mesh";
 		std::string 			mId;
-		std::string 			mMaterial;
 		Ogre::Vector3 			mDimensions;
 		Ogre::Vector3 			mPosition;
 		Ogre::Entity* 			mEntity;
 		Ogre::SceneNode* 		mNode;
-
+		ObjectData*				mData;
+		Chunk*					mChunk;
 	};
 }
 

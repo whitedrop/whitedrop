@@ -86,6 +86,8 @@ namespace Whitedrop {
 		 */
 		~LevelOfDetail();
 
+		int getIndex();
+
 		/**
 		 * @brief Overload `<`operator 
 		 * @param b the second object to test

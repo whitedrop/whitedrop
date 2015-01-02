@@ -1,16 +1,20 @@
-
 #include "../include/Entity.h"
-
+#include "../include/Chunk.h"
 namespace Whitedrop {
 	
-	Entity::Entity(std::string mesh, std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, std::string material)
+
+
+	// -----------------------------------------------------------------------------------
+
+	Entity::Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, Chunk* chunk)
 	{
-		mMesh = mesh;
 		mId = id;
 		mDimensions = dimensions;
 		mPosition = position;
-		mMaterial = material;
+		mData = data;
+		mChunk = chunk;
 	}
+
 	Entity::~Entity(void)
 	{
 
@@ -18,42 +22,53 @@ namespace Whitedrop {
 
 	Entity::Entity(const Entity &ref)
 	{
-		mMesh = ref.mMesh;
+		mData = ref.mData;
 		mId = ref.mId;
 		mDimensions = ref.mDimensions;
 		mPosition = ref.mPosition;
-		mMaterial = ref.mMaterial;
+		mChunk = ref.mChunk;
 	}
 	Entity& Entity:: operator=(Entity ref)
 	{
-		mMesh = ref.mMesh;
+		mData = ref.mData;
 		mId = ref.mId;
 		mDimensions = ref.mDimensions;
 		mPosition = ref.mPosition;
-		mMaterial = ref.mMaterial;
+		mChunk = ref.mChunk;
 		return *this;
-
-
 
 	}
 
 	void Entity::setup(Ogre::SceneManager* sceneMgr)
 	{
 		// Create an Entity
-		mEntity = sceneMgr->createEntity(mId, mMesh);
- 		mEntity->setMaterialName(mMaterial);
-    	// Create a SceneNode and attach the Entity to it
-		mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
+		if( mEntity == NULL)
+		{
+			mEntity = sceneMgr->createEntity(mId, mData->get(mChunk->getLOD().getIndex()).first);
+			mEntity->setMaterialName(mData->get(mChunk->getLOD().getIndex()).second);
+			// Create a SceneNode and attach the Entity to it
+			mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
+		
+			Ogre::AxisAlignedBox box = mEntity->getBoundingBox();
+			Ogre::Vector3 realSizes = box.getSize();
+		
+			mNode->attachObject(mEntity);
+			mNode->translate(mPosition);
+		
+			Ogre::Vector3 scaler = Ogre::Vector3(mDimensions.x / realSizes.x, mDimensions.y / realSizes.y, mDimensions.z / realSizes.z);
+			mNode->scale(scaler);
 
-    	Ogre::AxisAlignedBox box = mEntity->getBoundingBox();
-		Ogre::Vector3 realSizes = box.getSize();
+		 } else {
 
-    	mNode->attachObject(mEntity);
-    	mNode->translate(mPosition);
+		 	mNode->detachObject(mId);
+		 	sceneMgr->destroyEntity(mId);
 
- 		Ogre::Vector3 scaler = Ogre::Vector3(mDimensions.x / realSizes.x, mDimensions.y / realSizes.y, mDimensions.z / realSizes.z);
-   		mNode->scale(scaler);
-  
+		 	delete mEntity;
+		 	mEntity = NULL;
+		 	setup(sceneMgr);
+
+		 }
+
 
     }
 	bool Entity::update(void)
@@ -61,5 +76,6 @@ namespace Whitedrop {
 		return(true);
 	}
 
+   
 	
 }

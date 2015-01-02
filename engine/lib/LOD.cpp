@@ -28,6 +28,11 @@ namespace Whitedrop {
 	{
 	}
 
+	int LevelOfDetail::getIndex()
+	{
+		return mLOD;
+	}
+
 	bool LevelOfDetail::operator< (const LevelOfDetail& b) const
 	{
 		return mLOD < b.mLOD;

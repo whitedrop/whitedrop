@@ -1,6 +1,7 @@
 #include "../include/Chunk.h"
 
 namespace Whitedrop {
+
 	Chunk::Chunk()
 	{
 
@@ -44,6 +45,10 @@ namespace Whitedrop {
 		{
 			mLOD = newLOD;
 
+			for(int i = 0 ; i < mStaticEntities.size() ; i++)
+			{
+				mStaticEntities[i].setup(mWorld->getSceneMgr());
+			}
 		}
 	}
 
@@ -60,5 +65,4 @@ namespace Whitedrop {
 	{
 		return mLOD;
 	}
-
 }

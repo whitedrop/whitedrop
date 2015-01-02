@@ -67,6 +67,11 @@ namespace Whitedrop {
 			 * @param sceneManager the new scene manager
 			 */
 			virtual void setSceneMgr(Ogre::SceneManager* sceneManager);
+
+			/**
+			 * @brief get scenemgr
+			 */
+			virtual Ogre::SceneManager* getSceneMgr(void);
 			
 		protected:
 			Ogre::SceneManager* mSceneMgr;

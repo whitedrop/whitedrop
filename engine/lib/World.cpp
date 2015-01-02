@@ -25,16 +25,23 @@ namespace Whitedrop {
 	{
 		mSceneMgr = sceneManager;
 	}
+
+	Ogre::SceneManager* World::getSceneMgr(void)
+	{
+		return mSceneMgr;
+	}
 	void World::addEntity(Entity entity)
 	{
-		if(entity.type == "STATIC") {
+		if(entity.type == "STATIC")
+		{
 			staticEntities.push_back(entity);
 		}
 	}
 	
 	void World::setup(void)
 	{
-		for(int i = 0; i < staticEntities.size(); i++){
+		for(int i = 0; i < staticEntities.size(); i++)
+		{
 	   		staticEntities[i].setup(mSceneMgr);
 		}
 	}
