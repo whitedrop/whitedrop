@@ -93,35 +93,35 @@ namespace Whitedrop {
 		 * @param b the second object to test
 		 * @return whether b is superior to a
 		 */
-		bool LevelOfDetail::operator< (const LevelOfDetail& b) const;
+		bool operator< (const LevelOfDetail& b) const;
 
 		/**
 		 * @brief Overload `<=` operator 
 		 * @param b the second object to test
 		 * @return whether b is superior or equal to a
 		 */
-		bool LevelOfDetail::operator<= (const LevelOfDetail& b) const;
+		bool operator<= (const LevelOfDetail& b) const;
 
 		/**
 		 * @brief Overload `>` operator 
 		 * @param b the second object to test
 		 * @return whether b is inferior to a
 		 */
-		bool LevelOfDetail::operator> (const LevelOfDetail& b) const;
+		bool operator> (const LevelOfDetail& b) const;
 
 		/**
 		 * @brief Overload `>=` operator 
 		 * @param b the second object to test
 		 * @return whether b is inferior or equal to a
 		 */
-		bool LevelOfDetail::operator>= (const LevelOfDetail& b) const;
+		bool operator>= (const LevelOfDetail& b) const;
 
 		/**
 		 * @brief Overload `==` operator 
 		 * @param b the second object to test
 		 * @return whether b is equal to a
 		 */
-		bool LevelOfDetail::operator== (const LevelOfDetail& b) const;
+		bool operator== (const LevelOfDetail& b) const;
 
 
 		/**
@@ -129,7 +129,7 @@ namespace Whitedrop {
 		 * @param b the second object to test
 		 * @return whether b is different from a
 		 */
-		bool LevelOfDetail::operator!= (const LevelOfDetail& b) const;
+		bool operator!= (const LevelOfDetail& b) const;
 		
 	protected:
 		int mLOD = 0;

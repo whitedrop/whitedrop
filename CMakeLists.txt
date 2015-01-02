@@ -18,6 +18,7 @@ cmake_minimum_required(VERSION 2.6)
  
 project(Whitedrop)
 
+add_compile_options(-std=c++11)
 set(DIR_TO_INCLUDE)
 add_subdirectory(./engine/ engine)
 add_subdirectory(./parser/ parser)
