@@ -38,7 +38,13 @@ namespace Whitedrop {
 		return *this;
 
 	}
-
+	void Entity::attachToChunk(Chunk* chunk)
+	{
+		if( chunk != NULL )
+		{
+			mChunk = chunk;
+		}
+	}
 	void Entity::setup(Ogre::SceneManager* sceneMgr)
 	{
 		// Create an Entity
@@ -47,7 +53,8 @@ namespace Whitedrop {
 			mEntity = sceneMgr->createEntity(mId, mData->get(mChunk->getLOD().getIndex()).first);
 			mEntity->setMaterialName(mData->get(mChunk->getLOD().getIndex()).second);
 			// Create a SceneNode and attach the Entity to it
-			mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
+			if(mNode == NULL)
+				mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
 		
 			Ogre::AxisAlignedBox box = mEntity->getBoundingBox();
 			Ogre::Vector3 realSizes = box.getSize();
@@ -60,8 +67,13 @@ namespace Whitedrop {
 
 		 } else {
 
-		 	mNode->detachObject(mId);
-		 	sceneMgr->destroyEntity(mId);
+		 	if( mNode != NULL )
+			{
+				// mNode->showBoundingBox(true);
+		 		mNode->detachObject(mId);
+			}
+		 	if( sceneMgr != NULL)
+		 		sceneMgr->destroyEntity(mId);
 
 		 	delete mEntity;
 		 	mEntity = NULL;

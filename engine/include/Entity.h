@@ -33,9 +33,9 @@ namespace Whitedrop {
 		 * @param dimensions an Ogre::Vector3 which contains the dimensions in meter
 		 * @param position the Vector3 which contains it position 
 		 * @param data a pointer to the corresponding ObjectData
-		 * @param chunk the chunk which this entity is attached to
+		 * @param chunk (optionnal) the chunk which this entity is attached to
 		 */
-		Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, Chunk* chunk);
+		Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, Chunk* chunk = NULL);
 		
 		/**
 		 * @brief The copy constructor
@@ -66,6 +66,13 @@ namespace Whitedrop {
 		 */
 		const std::string type = "STATIC";
 
+		/**
+		 * @brief set the entity's chunk
+		 * 
+		 * @param chunk the chunk
+		 */
+		virtual void attachToChunk(Chunk* chunk);
+		
 		/**
 		 * @brief Attach the entity to specified sceneManager
 		 * @details This creates the OgreEntity using sceneMgr,

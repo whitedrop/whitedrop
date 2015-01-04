@@ -1,5 +1,5 @@
 #include "../include/World.h"
-
+#include "../include/Chunk.h"
 namespace Whitedrop {
 
 	World::World(Ogre::SceneManager* sceneManager, WhitedropEngine* engine)
@@ -30,19 +30,16 @@ namespace Whitedrop {
 	{
 		return mSceneMgr;
 	}
-	void World::addEntity(Entity entity)
+	void World::addEntity(Entity entity, Chunk* chunk)
 	{
-		if(entity.type == "STATIC")
-		{
-			staticEntities.push_back(entity);
-		}
+		chunk->addEntity(entity);
 	}
 	
 	void World::setup(void)
 	{
-		for(int i = 0; i < staticEntities.size(); i++)
-		{
-	   		staticEntities[i].setup(mSceneMgr);
+		typedef std::map<int, Chunk*>::iterator it_type;
+		for (it_type iterator = mChunks.begin(); iterator != mChunks.end(); iterator++) {
+			iterator->second->setup();
 		}
 	}
 	bool World::update(void)
@@ -50,4 +47,19 @@ namespace Whitedrop {
 		return(true);
 	}
 
+	Chunk* World::getChunkAt(int x, int y)
+	{
+
+		int pos = x + y * 256;
+		if (!mChunks.count(pos))
+		{
+
+			mChunks[pos] = new Chunk(this, x, y);
+			return getChunkAt(x, y);
+		}
+		
+		Chunk* chunk = mChunks.find(pos)->second;
+
+		return chunk;
+	}
 }

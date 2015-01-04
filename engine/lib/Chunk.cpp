@@ -36,9 +36,15 @@ namespace Whitedrop {
 		return *this;
 	}
 
-
-
+	void Chunk::addEntity(Entity ent)
+	{
+		mStaticEntities.push_back(ent);
+	}
 	void Chunk::update()
+	{
+		setup();
+	}
+	void Chunk::setup()
 	{
 		LevelOfDetail newLOD = LevelOfDetail(LODDistance(getDistanceFromCam()));
 		if(newLOD != mLOD)

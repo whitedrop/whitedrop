@@ -8,7 +8,7 @@
 #include "LOD.h"
 
 
-	namespace Whitedrop {
+namespace Whitedrop {
 
 	typedef std::pair<std::string, std::string> string_couple ;
 	/**

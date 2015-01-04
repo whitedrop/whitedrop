@@ -69,6 +69,8 @@ namespace Whitedrop {
 		Chunk& operator=(const Chunk ent);
 
 		virtual void update();
+		virtual void setup();
+		virtual void addEntity(Entity ent);
 
 		/**
 		 * @brief Get the chunk's distance from player

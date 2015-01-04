@@ -43,8 +43,10 @@ namespace Whitedrop {
 			 * @details do it before go()
 			 * 
 			 * @param ent the entity to add
+			 * @param x the x index for chunk
+			 * @param y the y coordinate of chunk
 			 */
-			virtual void addEntity(Entity ent);
+			virtual void addEntity(Entity ent, int x, int y);
 
 			/**
 			 * @brief setup the engine
@@ -168,16 +170,17 @@ namespace Whitedrop {
 	void run();
 
 	/**
-	 * @brief add an entity to scene
-	 * @details create the entity and add it to the engine therefore the world
+	 * @brief spawn an entity to the world
+	 * @details therefore attach it to a chunk and the world
 	 * 
-	 * @param mesh the mesh name
-	 * @param id the UNIQUE id
-	 * @param position the Whitedrop::Vector3 position
-	 * @param dims the Vector3 about dims
-	 * @param material the material name
+	 * @param id the entity unique id
+	 * @param position the position
+	 * @param dims the dimensions
+	 * @param data the ObjectData
+	 * @param chunkX the chunk x coordinate 
+	 * @param chunkY the chunk Y coordinate
 	 */
-	void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material);
+	void spawnEntity(std::string id, Vector3 position, Vector3 dims, ObjectData* data, int chunkX, int chunkY);
 
 
 }

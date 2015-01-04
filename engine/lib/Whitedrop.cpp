@@ -430,9 +430,10 @@ namespace Whitedrop {
 		return(true);
 	}
 
-	void WhitedropEngine::addEntity(Entity ent)
+	void WhitedropEngine::addEntity(Entity ent, int x, int y)
 	{
-		mWorld.addEntity(ent);
+		ent.attachToChunk(mWorld.getChunkAt(x, y));
+		mWorld.addEntity(ent, mWorld.getChunkAt(x, y));
 	}
 
 	Position2 WhitedropEngine::getCameraPosition()
@@ -440,10 +441,10 @@ namespace Whitedrop {
 		return Position2(0, 0);
 	}
 
-   	void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material)
+   	void spawnEntity(std::string id, Vector3 position, Vector3 dims, ObjectData* data, int chunkX, int chunkY)
    	{
-   			Entity ent = Entity(mesh, id, dims.getOgreVector(), position.getOgreVector(), material);
-   			engine.addEntity(ent);
+   			Entity *ent = new Entity(id, dims.getOgreVector(), position.getOgreVector(), data);
+   			engine.addEntity(*ent, chunkX, chunkY);
    	}
 
 	void run() {
