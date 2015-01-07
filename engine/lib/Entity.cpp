@@ -6,7 +6,7 @@ namespace Whitedrop {
 
 	// -----------------------------------------------------------------------------------
 
-	Entity::Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, Chunk* chunk)
+	Entity::Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, std::shared_ptr<Chunk> chunk)
 	{
 		mId = id;
 		mDimensions = dimensions;
@@ -38,7 +38,7 @@ namespace Whitedrop {
 		return *this;
 
 	}
-	void Entity::attachToChunk(Chunk* chunk)
+	void Entity::attachToChunk(std::shared_ptr<Chunk> chunk)
 	{
 		if( chunk != NULL )
 		{

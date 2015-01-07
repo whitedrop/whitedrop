@@ -13,6 +13,7 @@
 
 #include "base.h"
 #include "ObjectData.h"
+#include <memory>
 
 /// @namespace Whitedrop
 namespace Whitedrop {
@@ -35,7 +36,7 @@ namespace Whitedrop {
 		 * @param data a pointer to the corresponding ObjectData
 		 * @param chunk (optionnal) the chunk which this entity is attached to
 		 */
-		Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, Chunk* chunk = NULL);
+		Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, std::shared_ptr<Chunk> chunk = NULL);
 		
 		/**
 		 * @brief The copy constructor
@@ -71,7 +72,7 @@ namespace Whitedrop {
 		 * 
 		 * @param chunk the chunk
 		 */
-		virtual void attachToChunk(Chunk* chunk);
+		virtual void attachToChunk(std::shared_ptr<Chunk> chunk);
 		
 		/**
 		 * @brief Attach the entity to specified sceneManager
@@ -98,10 +99,10 @@ namespace Whitedrop {
 		std::string 			mId;
 		Ogre::Vector3 			mDimensions;
 		Ogre::Vector3 			mPosition;
-		Ogre::Entity* 			mEntity;
-		Ogre::SceneNode* 		mNode;
+		Ogre::Entity* 			mEntity = NULL;
+		Ogre::SceneNode* 		mNode = NULL;
 		ObjectData*				mData;
-		Chunk*					mChunk;
+		std::shared_ptr<Chunk>  mChunk;
 	};
 }
 

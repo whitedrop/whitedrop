@@ -78,11 +78,11 @@ int main(int argc, char* argv[])
 			{
 				for(int cY = 0 ;  cY < 16 ; cY++)
 				{
-					for( int x = 0 ; x < 16 ; x++)
+					for( int x = 0 ; x < 2 ; x++)
 					{
-						for (int y= 0 ; y < 16 ; y++)
+						for (int y= 0 ; y < 2 ; y++)
 						{
-							Whitedrop::spawnEntity(std::to_string(id++), Whitedrop::Vector3(cX * 16 + x, 0, cY * 16 + y), Whitedrop::Vector3(1,1,1), &data, cX, cY);
+							Whitedrop::spawnEntity(std::to_string(id++), Whitedrop::Vector3(cX * 16 + x * 8, 0, cY * 16 + y * 8), Whitedrop::Vector3(4,4,4), &data, cX, cY);
 						}
 					}
 				}

@@ -30,14 +30,14 @@ namespace Whitedrop {
 	{
 		return mSceneMgr;
 	}
-	void World::addEntity(Entity entity, Chunk* chunk)
+	void World::addEntity(Entity entity, std::shared_ptr<Chunk> chunk)
 	{
 		chunk->addEntity(entity);
 	}
 	
 	void World::setup(void)
 	{
-		typedef std::map<int, Chunk*>::iterator it_type;
+		typedef std::map<int, std::shared_ptr<Chunk>>::iterator it_type;
 		for (it_type iterator = mChunks.begin(); iterator != mChunks.end(); iterator++) {
 			iterator->second->setup();
 		}
@@ -47,18 +47,18 @@ namespace Whitedrop {
 		return(true);
 	}
 
-	Chunk* World::getChunkAt(int x, int y)
+	std::shared_ptr<Chunk> World::getChunkAt(int x, int y)
 	{
 
 		int pos = x + y * 256;
 		if (!mChunks.count(pos))
 		{
 
-			mChunks[pos] = new Chunk(this, x, y);
+			mChunks[pos] = std::make_shared<Chunk>(this, x, y);
 			return getChunkAt(x, y);
 		}
 		
-		Chunk* chunk = mChunks.find(pos)->second;
+		std::shared_ptr<Chunk> chunk = mChunks.find(pos)->second;
 
 		return chunk;
 	}

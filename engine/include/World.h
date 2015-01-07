@@ -9,6 +9,7 @@
 #include "base.h"
 #include "Entity.h"
 #include <map>
+#include <memory>
 
  /**
   * @namespace Whiterop
@@ -49,7 +50,7 @@ namespace Whitedrop {
 			 * @param entity the entity
 			 * @param Chunk a pointer to the entity's chunk
 			 */
-			virtual void addEntity(Entity entity, Chunk* chunk);
+			virtual void addEntity(Entity entity, std::shared_ptr<Chunk> chunk);
 	
 			/**
 			 * @brief setup world
@@ -84,12 +85,12 @@ namespace Whitedrop {
 			 * 
 			 * @return a pointer to the chunk
 			 */
-			virtual Chunk* getChunkAt(int x, int y);
+			virtual std::shared_ptr<Chunk> getChunkAt(int x, int y);
 			
 		protected:
 			Ogre::SceneManager* mSceneMgr;
 			WhitedropEngine* mEngine;
-			std::map<int, Chunk*> mChunks;
+			std::map<int, std::shared_ptr<Chunk>> mChunks;
 			// std::vector<Entity> dynamicEntities; TODO
 	};
 }
