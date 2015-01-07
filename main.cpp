@@ -1,6 +1,7 @@
 #include "parser/include/parser.h"
 #include "engine/include/Whitedrop.h"
 #include <string>
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
 #endif
