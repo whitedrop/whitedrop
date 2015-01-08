@@ -254,7 +254,9 @@ namespace Whitedrop {
 	            mDetailsPanel->setParamValue(7, Ogre::StringConverter::toString(mCamera->getDerivedOrientation().z));
 	        }
 	    }
-	
+
+
+		mWorld.update();
 	    return true;
 	}
 	//-------------------------------------------------------------------------------------
@@ -438,7 +440,8 @@ namespace Whitedrop {
 
 	Position2 WhitedropEngine::getCameraPosition()
 	{
-		return Position2(0, 0);
+		Ogre::Vector3 pos = mCamera->getPosition();
+		return Position2(pos.x, pos.y);
 	}
 
    	void spawnEntity(std::string id, Vector3 position, Vector3 dims, ObjectData* data, int chunkX, int chunkY)

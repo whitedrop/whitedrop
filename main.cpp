@@ -65,6 +65,7 @@ int main(int argc, char* argv[])
 		lod[1] = std::make_pair("cube.mesh", "");
 		lod[2] = std::make_pair("cube.mesh", "");
 		lod[3] = std::make_pair("cube.mesh", "");
+		lod[4] = std::make_pair("cube.mesh", "");
 		lod[5] = std::make_pair("cube.mesh", "");
 		lod[6] = std::make_pair("cube.mesh", "");
 		lod[7] = std::make_pair("sphere.mesh", "");

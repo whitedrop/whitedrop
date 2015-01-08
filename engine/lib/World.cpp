@@ -44,6 +44,11 @@ namespace Whitedrop {
 	}
 	bool World::update(void)
 	{
+		typedef std::map<int, std::shared_ptr<Chunk>>::iterator it_type;
+		for (it_type iterator = mChunks.begin(); iterator != mChunks.end(); iterator++) {
+			iterator->second->update();
+		}
+
 		return(true);
 	}
 

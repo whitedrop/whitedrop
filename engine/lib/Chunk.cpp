@@ -1,4 +1,5 @@
 #include "../include/Chunk.h"
+#include <iostream>
 
 namespace Whitedrop {
 
@@ -41,14 +42,17 @@ namespace Whitedrop {
 		mStaticEntities.push_back(ent);
 	}
 	void Chunk::update()
-	{
+	{	
 		setup();
 	}
 	void Chunk::setup()
 	{
-		LevelOfDetail newLOD = LevelOfDetail(LODDistance(getDistanceFromCam()));
-		if(newLOD != mLOD)
+		float distance = getDistanceFromCam();
+		LevelOfDetail newLOD = LevelOfDetail(LODDistance(distance));
+		if(newLOD != mLOD)	
+			
 		{
+			// std::cout << mPosX << ";" << mPosY << ";" << newLOD.getIndex() << ":" << distance << std::endl;
 			mLOD = newLOD;
 
 			for(int i = 0 ; i < mStaticEntities.size() ; i++)
@@ -64,7 +68,8 @@ namespace Whitedrop {
 		float camY = mWorld->getEngine()->getCameraPosition().y;
 		float chuX = mPosX * size;
 		float chuY = mPosY * size;
-		return fastSqrt(abs(pow(chuX - camX, 2) + pow(chuY - camY, 2)));
+
+		return sqrt(abs((camX - chuX)*(camX - chuX) + (camY - chuY)*(camY - chuY)));
 	}
 
 	LevelOfDetail Chunk::getLOD()
