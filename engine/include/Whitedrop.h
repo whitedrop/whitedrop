@@ -10,7 +10,7 @@
 #include "World.h"
 #include "Entity.h"
 #include "LOD.h"
-
+#include <map>
 #include <utility>
 /**
  * @namespace Whitedrop
@@ -160,6 +160,9 @@ namespace Whitedrop {
 	
 			World mWorld;
 	};
+
+	const map<std::string, std::string> configuration;
+	void set(std::string key, std::string value);
 	/**
 	 * @brief init world
 	 * @return done?

@@ -450,7 +450,10 @@ namespace Whitedrop {
    		Entity *ent = new Entity(id, mesh, material, dims.getOgreVector(), position.getOgreVector(), lod_pair);
    		engine.addEntity(*ent, chunkX, chunkY);
    	}
-
+   	void set(std::string key, std::string value)
+   	{
+   		map[key] = value;
+   	}
 	void run() {
 		try {
             engine.go();
