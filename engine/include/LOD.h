@@ -146,7 +146,7 @@ namespace Whitedrop {
 	 */
 	static float getLODFactor()
 	{
-		return 0.01f;
+		return 0.008f;
 	} 
 }
 #endif

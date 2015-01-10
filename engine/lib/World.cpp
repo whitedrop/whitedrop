@@ -55,7 +55,7 @@ namespace Whitedrop {
 	std::shared_ptr<Chunk> World::getChunkAt(int x, int y)
 	{
 
-		int pos = x + y * 256;
+		int pos = x + y * 130;
 		if (!mChunks.count(pos))
 		{
 

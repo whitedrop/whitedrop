@@ -69,7 +69,7 @@ namespace Whitedrop {
 		float chuX = mPosX * size;
 		float chuY = mPosY * size;
 
-		return sqrt(abs((camX - chuX)*(camX - chuX) + (camY - chuY)*(camY - chuY)));
+		return fastSqrt(abs((camX - chuX)*(camX - chuX) + (camY - chuY)*(camY - chuY)));
 	}
 
 	LevelOfDetail Chunk::getLOD()

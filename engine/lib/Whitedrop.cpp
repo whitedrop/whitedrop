@@ -65,9 +65,9 @@ namespace Whitedrop {
 	    mCamera = mSceneMgr->createCamera("PlayerCam");
 	
 	    // Position it at 500 in Z direction
-	    mCamera->setPosition(Ogre::Vector3(100,100,800));
+	    mCamera->setPosition(Ogre::Vector3(100,100,100));
 	    // Look back along -Z
-	    mCamera->lookAt(Ogre::Vector3(0,0,-300));
+	    mCamera->lookAt(Ogre::Vector3(0,0,0));
 	    mCamera->setNearClipDistance(5);
 	
 	    mCameraMan = new OgreBites::SdkCameraMan(mCamera);   // create a default camera controller
@@ -441,13 +441,14 @@ namespace Whitedrop {
 	Position2 WhitedropEngine::getCameraPosition()
 	{
 		Ogre::Vector3 pos = mCamera->getPosition();
-		return Position2(pos.x, pos.y);
+		return Position2(pos.x, pos.z);
 	}
 
-   	void spawnEntity(std::string id, Vector3 position, Vector3 dims, ObjectData* data, int chunkX, int chunkY)
+   	void spawnEntity(std::string id, Vector3 position, Vector3 dims, std::pair<int, int> lods, std::string mesh, std::string material, int chunkX, int chunkY)
    	{
-   			Entity *ent = new Entity(id, dims.getOgreVector(), position.getOgreVector(), data);
-   			engine.addEntity(*ent, chunkX, chunkY);
+		std::pair<LevelOfDetail, LevelOfDetail> lod_pair = std::make_pair<LevelOfDetail, LevelOfDetail>(LevelOfDetail(LODIndex(lods.first)), LevelOfDetail(LODIndex(lods.second)));
+   		Entity *ent = new Entity(id, mesh, material, dims.getOgreVector(), position.getOgreVector(), lod_pair);
+   		engine.addEntity(*ent, chunkX, chunkY);
    	}
 
 	void run() {

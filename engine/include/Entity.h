@@ -14,9 +14,14 @@
 #include "base.h"
 #include "ObjectData.h"
 #include <memory>
+#include <utility>
+#include "LOD.h"
 
 /// @namespace Whitedrop
 namespace Whitedrop {
+	typedef LevelOfDetail LOD;
+	typedef std::pair<LOD, LOD> lod_couple;
+
 	class Chunk;
 	/** @class Entity
 	* This parent type is a static entity which is shown and loaded into the Physics engine but never updated
@@ -36,7 +41,7 @@ namespace Whitedrop {
 		 * @param data a pointer to the corresponding ObjectData
 		 * @param chunk (optionnal) the chunk which this entity is attached to
 		 */
-		Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, std::shared_ptr<Chunk> chunk = NULL);
+		Entity(std::string id, std::string material, std::string mesh, Ogre::Vector3 dimensions, Ogre::Vector3 position, lod_couple drawDistances, std::shared_ptr<Chunk> chunk = NULL);
 		
 		/**
 		 * @brief The copy constructor
@@ -101,8 +106,10 @@ namespace Whitedrop {
 		Ogre::Vector3 			mPosition;
 		Ogre::Entity* 			mEntity = NULL;
 		Ogre::SceneNode* 		mNode = NULL;
-		ObjectData*				mData;
+		lod_couple				mDrawDistances;
 		std::shared_ptr<Chunk>  mChunk;
+		std::string				mMesh;
+		std::string				mMaterial;
 	};
 }
 

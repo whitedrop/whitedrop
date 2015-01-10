@@ -1,5 +1,5 @@
 #include "../include/LOD.h"
-
+#include <iostream>
 
 namespace Whitedrop {
 	LevelOfDetail::LevelOfDetail()
@@ -35,22 +35,23 @@ namespace Whitedrop {
 
 	bool LevelOfDetail::operator< (const LevelOfDetail& b) const
 	{
-		return mLOD < b.mLOD;
+		return mLOD > b.mLOD;
 	}
 
 	bool LevelOfDetail::operator<= (const LevelOfDetail& b) const
 	{
-		return mLOD <= b.mLOD;
+		return mLOD >= b.mLOD;
 	}
 
 	bool LevelOfDetail::operator> (const LevelOfDetail& b) const
 	{
-		return mLOD > b.mLOD;
+		return mLOD < b.mLOD;
 	}
 
 	bool LevelOfDetail::operator>= (const LevelOfDetail& b) const
 	{
-		return mLOD >= b.mLOD;
+
+		return mLOD <= b.mLOD;
 	}
 
 	bool LevelOfDetail::operator== (const LevelOfDetail& b) const

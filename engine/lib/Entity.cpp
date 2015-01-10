@@ -7,12 +7,14 @@ namespace Whitedrop {
 
 	// -----------------------------------------------------------------------------------
 
-	Entity::Entity(std::string id, Ogre::Vector3 dimensions, Ogre::Vector3 position, ObjectData* data, std::shared_ptr<Chunk> chunk)
+	Entity::Entity(std::string id, std::string mesh, std::string material, Ogre::Vector3 dimensions, Ogre::Vector3 position, lod_couple drawDistances, std::shared_ptr<Chunk> chunk)
 	{
 		mId = id;
 		mDimensions = dimensions;
 		mPosition = position;
-		mData = data;
+		mMaterial = material;
+		mMesh = mesh;
+		mDrawDistances = drawDistances;
 		mChunk = chunk;
 	}
 
@@ -23,7 +25,9 @@ namespace Whitedrop {
 
 	Entity::Entity(const Entity &ref)
 	{
-		mData = ref.mData;
+		mMaterial = ref.mMaterial;
+		mMesh = ref.mMesh;
+		mDrawDistances = ref.mDrawDistances;
 		mId = ref.mId;
 		mDimensions = ref.mDimensions;
 		mPosition = ref.mPosition;
@@ -31,7 +35,9 @@ namespace Whitedrop {
 	}
 	Entity& Entity:: operator=(Entity ref)
 	{
-		mData = ref.mData;
+		mMaterial = ref.mMaterial;
+		mMesh = ref.mMesh;
+		mDrawDistances = ref.mDrawDistances;
 		mId = ref.mId;
 		mDimensions = ref.mDimensions;
 		mPosition = ref.mPosition;
@@ -48,53 +54,57 @@ namespace Whitedrop {
 	}
 	void Entity::setup(Ogre::SceneManager* sceneMgr)
 	{
-		// Create an Entity
-		if( mEntity == NULL)
+		LOD chunkLOD = mChunk->getLOD();
+
+		
+			// we split this in to ifs to avoid mDrawDistances calls
+		LOD minLOD = mDrawDistances.first;
+		LOD maxLOD = mDrawDistances.second;
+		if( chunkLOD >= minLOD && chunkLOD <= maxLOD)
 		{
-			std::string mesh = mData->get(mChunk->getLOD().getIndex()).first;
-			// std::cout << mChunk->getLOD().getIndex() << mesh << std::endl;
-			if ( mesh != "" )
+
+			if( mEntity == NULL)
 			{
-			    mEntity = sceneMgr->createEntity(mId, mesh);
-		    	std::string material = mData->get(mChunk->getLOD().getIndex()).second;
-		    	if( material != "")
-		    		mEntity->setMaterialName(material);
-		    	// Create a SceneNode and attach the Entity to it
-		    	if(mNode == NULL)
-		    		mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
-		    
-		    	Ogre::AxisAlignedBox box = mEntity->getBoundingBox();
-		    	Ogre::Vector3 realSizes = box.getSize();
-		    
-		    	mNode->attachObject(mEntity);
-		    	 mNode->translate(mPosition);
-		    
-			    Ogre::Vector3 scaler = Ogre::Vector3(mDimensions.x / realSizes.x, mDimensions.y / realSizes.y, mDimensions.z / realSizes.z);
-			    mNode->scale(scaler);
-			}
-		 } else {
+				// std::cout << "draw " << mMesh << std::endl;
 
-		 	if( mNode != NULL )
+				mEntity = sceneMgr->createEntity(mId, mMesh);
+				if( mMaterial != "")
+					mEntity->setMaterialName(mMaterial);
+
+			    	// Create a SceneNode and attach the Entity to it
+				if(mNode == NULL)
+				{
+					mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
+					// mNode->showBoundingBox(true);
+					Ogre::AxisAlignedBox box = mEntity->getBoundingBox();
+					Ogre::Vector3 realSizes = box.getSize();
+					// mNode->attachObject(mEntity);
+					mNode->translate(mPosition);
+					Ogre::Vector3 scaler = Ogre::Vector3(mDimensions.x / realSizes.x, mDimensions.y /  realSizes.y, mDimensions.z / realSizes.z);
+					mNode->scale(scaler);
+				}
+				mNode->attachObject(mEntity);
+			}
+		// Nothing should be drawn
+		} else {
+
+			// But there's already an entity
+			if( mEntity != NULL ) 
 			{
-				// mNode->showBoundingBox(true);
-		 		mNode->detachObject(mId);
+				mNode->detachObject(mId);
+				sceneMgr->destroyEntity(mId);
+				mEntity = NULL;
+				// setup(sceneMgr);
 			}
-		 	if( sceneMgr != NULL)
-		 		sceneMgr->destroyEntity(mId);
-		 	// if( mEntity != NULL)
-		 		// delete mEntity;
-		 	mEntity = NULL;
-		 	this->setup(sceneMgr);
-
-		 }
+		}
 
 
-    }
+	}
 	bool Entity::update(void)
 	{
 		return(true);
 	}
 
-   
-	
+
+
 }

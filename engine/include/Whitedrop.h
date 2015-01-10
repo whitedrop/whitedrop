@@ -9,7 +9,9 @@
 #include "Vector3.h"
 #include "World.h"
 #include "Entity.h"
+#include "LOD.h"
 
+#include <utility>
 /**
  * @namespace Whitedrop
  */
@@ -180,7 +182,7 @@ namespace Whitedrop {
 	 * @param chunkX the chunk x coordinate 
 	 * @param chunkY the chunk Y coordinate
 	 */
-	void spawnEntity(std::string id, Vector3 position, Vector3 dims, ObjectData* data, int chunkX, int chunkY);
+	void spawnEntity(std::string id, Vector3 position, Vector3 dims, std::pair<int, int> lods, std::string material, std::string mesh, int chunkX, int chunkY);
 
 
 }
