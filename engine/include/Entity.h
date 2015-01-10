@@ -12,7 +12,6 @@
 #define ENTITY_H
 
 #include "base.h"
-#include "ObjectData.h"
 #include <memory>
 #include <utility>
 #include "LOD.h"

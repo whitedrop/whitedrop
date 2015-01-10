@@ -1,6 +1,5 @@
 #include "parser/include/parser.h"
 #include "engine/include/Whitedrop.h"
-#include "engine/include/ObjectData.h"
 #include <string>
 #include <utility>
 // #include <boost/program_options.hpp>
@@ -90,6 +89,9 @@ int main(int argc, char* argv[])
 					}
 				}
 			}
+			Whitedrop::spawnEntity("0x2A", Whitedrop::Vector3(64 * 8, 0, 64 * 8), Whitedrop::Vector3(64*16,1,64*16), std::make_pair<int, int>(10, 0), "Wellington.mesh", "",0, 0);
+						
+
 
 			// Whitedrop::spawnEntity(std::to_string(0x2A), Whitedrop::Vector3(0, 0,0), Whitedrop::Vector3(4,4,4), std::make_pair<int, int>(10, 5), "sphere.mesh", "",0, 0);
 			// Whitedrop::spawnEntity("s", Whitedrop::Vector3(0, 8,0), Whitedrop::Vector3(4,4,4), std::make_pair<int, int>(10, 5), "sphere.mesh", "",0, 0);
