@@ -8,10 +8,14 @@
 
 #include "base.h"
 #include "Entity.h"
+#include <map>
+#include <memory>
+
  /**
   * @namespace Whiterop
   */
 namespace Whitedrop {
+	class WhitedropEngine;
 	/**
 	 * @class World
 	 * @brief represents a world w/ entities
@@ -25,7 +29,7 @@ namespace Whitedrop {
 			 * 
 			 * @param sceneManager the scene manager
 			 */
-			World(Ogre::SceneManager* sceneManager);
+			World(Ogre::SceneManager* sceneManager, WhitedropEngine* engine);
 
 			/**
 			 * @brief default ctor
@@ -36,14 +40,21 @@ namespace Whitedrop {
 			 * @brief default dtor
 			 */
 			virtual ~World(void);
-	
+			
+			/**
+			 * @brief access the whitedrop engine instance
+			 * @return the instance
+			 */
+			virtual WhitedropEngine* getEngine();
+			
 			/**
 			 * @brief add an entity to the world
 			 * @details 
 			 * 
-			 * @param entity [the entity
+			 * @param entity the entity
+			 * @param Chunk a pointer to the entity's chunk
 			 */
-			virtual void addEntity(Entity entity);
+			virtual void addEntity(Entity entity, std::shared_ptr<Chunk> chunk);
 	
 			/**
 			 * @brief setup world
@@ -64,10 +75,26 @@ namespace Whitedrop {
 			 * @param sceneManager the new scene manager
 			 */
 			virtual void setSceneMgr(Ogre::SceneManager* sceneManager);
+
+			/**
+			 * @brief get scenemgr
+			 */
+			virtual Ogre::SceneManager* getSceneMgr(void);
+
+			/**
+			 * @brief gets a chunk for specified indexes
+			 * 
+			 * @param x the x index
+			 * @param y the y index
+			 * 
+			 * @return a pointer to the chunk
+			 */
+			virtual std::shared_ptr<Chunk> getChunkAt(int x, int y);
 			
 		protected:
 			Ogre::SceneManager* mSceneMgr;
-			std::vector<Entity> staticEntities;
+			WhitedropEngine* mEngine;
+			std::map<int, std::shared_ptr<Chunk>> mChunks;
 			// std::vector<Entity> dynamicEntities; TODO
 	};
 }
