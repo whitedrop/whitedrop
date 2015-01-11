@@ -163,9 +163,27 @@ namespace Whitedrop {
 
 	static std::map<std::string, std::string> configuration;
 
+
+	/**
+	 * @brief change a setting
+	 * @details set the configuration's map value for given key
+	 * Used to set chunk size, LOD factor...
+	 * 
+	 * @param key the key
+	 * @param value tthe value
+	 */
 	void setConfig(std::string key, std::string value);
 
-	std::string getConfig(std::string key, std::string defaultValue);
+	/**
+	 * @brief access a key in config
+	 * 
+	 * @param key the param key
+	 * @param defaultValue the value to return if no suitable value was found
+	 * 
+	 * @return the value or the defaultValue
+	 */
+	std::string getConfig(std::string key, std::string defaultValue);,
+	
 	/**
 	 * @brief init world
 	 * @return done?
@@ -178,15 +196,17 @@ namespace Whitedrop {
 	void run();
 
 	/**
-	 * @brief spawn an entity to the world
-	 * @details therefore attach it to a chunk and the world
+	 * @brief add an entity to the world
+	 * @details and to a chunk
 	 * 
-	 * @param id the entity unique id
-	 * @param position the position
-	 * @param dims the dimensions
-	 * @param data the ObjectData
-	 * @param chunkX the chunk x coordinate 
-	 * @param chunkY the chunk Y coordinate
+	 * @param id the entity unique id. Thje node name will be <id>_n
+	 * @param position its position in the world
+	 * @param dims its dimensions, in meter
+	 * @param lods a pair of two ints. The minimum display LOD and max
+	 * @param material the material name
+	 * @param mesh the mesh name
+	 * @param chunkX the chunkx coordinate
+	 * @param chunkY the y coordinate of chunk
 	 */
 	void spawnEntity(std::string id, Vector3 position, Vector3 dims, std::pair<int, int> lods, std::string material, std::string mesh, int chunkX, int chunkY);
 

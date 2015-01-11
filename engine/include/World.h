@@ -41,6 +41,10 @@ namespace Whitedrop {
 			 */
 			virtual ~World(void);
 			
+			/**
+			 * @brief access the whitedrop engine instance
+			 * @return the instance
+			 */
 			virtual WhitedropEngine* getEngine();
 			
 			/**

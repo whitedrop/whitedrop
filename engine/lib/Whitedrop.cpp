@@ -455,7 +455,7 @@ namespace Whitedrop {
 		configuration[key] = value;
 	}
 
-	std::string getConfig(std::string key, std::string defaultValue)
+	std::string getConfig(std::string key, std::string defaultValue) 
 	{
 
 		std::map<std::string, std::string>::const_iterator pos = configuration.find(key);

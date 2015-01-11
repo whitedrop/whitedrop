@@ -1,6 +1,5 @@
 /**
  * @file Chunk.h
- * @page ChunkPage Chunk
  * @brief Contains a Chunk class which represents chunk in a world
  * @author vinz243
  * A Chunk represents a way to divide a world.
@@ -48,8 +47,26 @@ namespace Whitedrop {
 	 */
 	class Chunk {
 	public:
+
+		/**
+		 * @brief default constructor
+		 * @details initialialize an empty chunk, unsable
+		 */
 		Chunk();
+
+		/**
+		 * @brief initialize a chunk
+		 * @details construct a chunk. Note that it must be added to the world after
+		 * 
+		 * @param world the world instance where the chunk is
+		 * @param x its x coordinate (index)
+		 * @param y its y coordinate (index)
+		 */
 		Chunk(World* world, int x, int y);
+
+		/**
+		 * @brief destructor
+		 */
 		~Chunk();
 
 		/**
@@ -68,8 +85,30 @@ namespace Whitedrop {
 		 */
 		Chunk& operator=(const Chunk ent);
 
+		/**
+		 * @brief Update a chunk
+		 * @details see Chunk::setup()
+		 * @ref Chunk::setup
+		 * @ref Entity::setup() 
+		 * @ref LevelOfDetail
+		 */
 		virtual void update();
+
+		/**
+		 * @brief setup a chunk.
+		 * @details compute chunk's distance from camera,
+		 * then compute its LOD accordingly. If it has changed from last update,
+		 * then update every static entity. 
+		 * @details [long description]
+		 */
 		virtual void setup();
+
+		/**
+		 * @brief add an entity to the chunk
+		 * @details add an entity to the chunk, so it will be updated allong w/ the chunk
+		 * 
+		 * @param ent the entity to add
+		 */
 		virtual void addEntity(Entity ent);
 
 		/**
