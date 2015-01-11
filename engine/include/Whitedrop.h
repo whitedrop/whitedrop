@@ -161,8 +161,11 @@ namespace Whitedrop {
 			World mWorld;
 	};
 
-	const map<std::string, std::string> configuration;
-	void set(std::string key, std::string value);
+	static std::map<std::string, std::string> configuration;
+
+	void setConfig(std::string key, std::string value);
+
+	std::string getConfig(std::string key, std::string defaultValue);
 	/**
 	 * @brief init world
 	 * @return done?
