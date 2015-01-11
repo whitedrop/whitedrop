@@ -59,7 +59,9 @@ namespace Parser {
 
 	        Entity ent;
 	        Vector3 pos;
+	        Vector2 chunk;
 	        Vector3 dim;
+	        Vector2 lods;
 
 			pos.x = std::stoi(obj2["posX"].to_str());
 			pos.y = std::stoi(obj2["posY"].to_str());
@@ -67,11 +69,18 @@ namespace Parser {
 			dim.x = std::stoi(obj2["dimX"].to_str());
 			dim.y = std::stoi(obj2["dimY"].to_str());
 			dim.z = std::stoi(obj2["dimZ"].to_str());
+			chunk.x = std::stoi(obj2["chunkX"].to_str());
+			chunk.y = std::stoi(obj2["chunkY"].to_str());
+			lods.x = std::stoi(obj2["minLOD"].to_str());
+			lods.y = std::stoi(obj2["maxLOD"].to_str());
+			
 			if(!obj2["material"].is<picojson::null>())
 				ent.material = obj2["material"].to_str();
 	        ent.id = 	obj2["id"].to_str();
 	        ent.mesh = 	obj2["mesh"].to_str();
 	        ent.position = pos;
+	        ent.chunk = chunk;
+	        ent.lods = lods;
 	        ent.dimensions = dim;
 	        world.entities.push_back(ent);
 	    }

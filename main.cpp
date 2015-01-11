@@ -2,13 +2,15 @@
 #include "engine/include/Whitedrop.h"
 #include <string>
 #include <utility>
-// #include <boost/program_options.hpp>
+#include <boost/program_options.hpp>
 
-// #include <iostream>
-// #include <iterator>
+#include <iostream>
+#include <iterator>
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
+
+#include <shellapi.h>
 #endif
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
@@ -16,63 +18,63 @@ int WINAPI WinMain ( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #else 
 int main(int argc, char* argv[])
 #endif
+
 {
 
-	// namespace po = boost::program_options;
+	#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+		int argc;
+		LPWSTR *argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+	#endif 
+	namespace po = boost::program_options;
 
-	// po::options_description desc("Allowed options");
-	// desc.add_options()
-	//     ("help", "produce help message")
-	//     ("map", po::value<string>(), "set path to map")
-	//     ("lod", "create a test map for lods")
-	// ;
+	po::options_description desc("Allowed options");
+	desc.add_options()
+	    ("help", "produce help message")
+	    ("map", po::value<std::string>(), "set path to map. example: '../media/maps/basic-map.json'")
+	    ("lod", "create a test map for lods")
+	;
 	
-	// po::variables_map vm;
-	// po::store(po::parse_command_line(ac, av, desc), vm);
-	// po::notify(vm);    
+	po::variables_map vm;
+	po::store(po::parse_command_line(argc, argv, desc), vm);
+	po::notify(vm);    
 	
-	// if (vm.count("help")) {
-	//     cout << desc << "\n";
-	//     return 1;
-	// }
+	if (vm.count("help")) {
+	    std::cout << desc << "\n";
+	    return 1;
+	}
 	// if()
-	// if (vm.count("map")) {
-	//     std::string map = vm["map"].as<string>();
-	//  //    Parser::input(map);
-	// 	// Parser::World world = Parser::load();
+	if (vm.count("map")) {
+	    std::string map = vm["map"].as<std::string>();
+	    Parser::input(map);
+		Parser::World world = Parser::load();
 		
-	// 	// if(Whitedrop::init())
-	// 	// {
-	// 	// 	for(int i=0; i < world.entities.size(); i++){
- // 	// 		  	std::string material = world.entities[i].material;
- // 	// 		  	std::string mesh = world.entities[i].mesh;
- // 	// 		  	std::string id = world.entities[i].id;
- // 	// 		  	Whitedrop::Vector3 pos = Whitedrop::Vector3(world.entities[i].position.x, world.entities[i].position.y, world.entities[i].position.y);
- // 	// 		  	Whitedrop::Vector3 dim = Whitedrop::Vector3(world.entities[i].dimensions.x, world.entities[i].dimensions.y, world.entities[i].dimensions.z);
-	// 	// 		Whitedrop::spawnEntity(mesh, id, pos, dim, material);
-	// 	// 	}		
+		if(Whitedrop::init())
+		{
+
+			typedef std::pair<int, int> int_couple;
+
+			for(int i=0; i < world.entities.size(); i++){
+
+ 			  	std::string material = world.entities[i].material;
+ 			  	std::string mesh = world.entities[i].mesh;
+ 			  	std::string id = world.entities[i].id;
+ 			  	std::cout << mesh << std::endl;
+ 			  	int_couple lods = std::make_pair<int, int>((int) world.entities[i].lods.x, (int) world.entities[i].lods.y);
+
+ 			  	Whitedrop::Vector3 pos = Whitedrop::Vector3(world.entities[i].position.x, world.entities[i].position.y, world.entities[i].position.y);
+ 			  	Whitedrop::Vector3 dim = Whitedrop::Vector3(world.entities[i].dimensions.x, world.entities[i].dimensions.y, world.entities[i].dimensions.z);
+
+				Whitedrop::spawnEntity(id, pos, dim, lods, mesh, material, world.entities[i].chunk.x, world.entities[i].chunk.y);
+			}		
 			
-	// 	// 	Whitedrop::run();
+			Whitedrop::run();
 	
-	// 	// }
-	// }
-	// else
-	// {	
+		}
+	}
+	else
+	{	
 		int id = 0;
 
-		// std::map<int, Whitedrop::string_couple> lod;
-		// lod[0] = std::make_pair("cube.mesh", "");
-		// lod[1] = std::make_pair("cube.mesh", "");
-		// lod[2] = std::make_pair("cube.mesh", "");
-		// lod[3] = std::make_pair("cube.mesh", "");
-		// lod[4] = std::make_pair("cube.mesh", "");
-		// lod[5] = std::make_pair("cube.mesh", "");
-		// lod[6] = std::make_pair("cube.mesh", "");
-		// lod[7] = std::make_pair("sphere.mesh", "");
-		// lod[8] = std::make_pair("sphere.mesh", "");
-		// lod[9] = std::make_pair("sphere.mesh", "");
-		// lod[10] = std::make_pair("sphere.mesh", "");
-		// Whitedrop::ObjectData data = Whitedrop::ObjectData(lod);
 		if(Whitedrop::init())
 		{
 			for(int cX = 0 ; cX < 64 ; cX++)
@@ -99,7 +101,7 @@ int main(int argc, char* argv[])
 
 			Whitedrop::run();
 		}
-	// }
+	}
 
 
 

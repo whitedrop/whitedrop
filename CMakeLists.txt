@@ -31,11 +31,11 @@ include_directories(${DIR_TO_INCLUDE})
 add_executable(Whitedrop WIN32 ${HDRS} ${SRCS})
  
 set_target_properties(Whitedrop PROPERTIES DEBUG_POSTFIX _d)
-set(Boost_LIBRARIES "C:/OgreSDK/boost/lib/libboost_system-vc120-mt-gd-1_55.lib")
+set(Boost_LIBRARIES "C:/OgreSDK/boost/lib/libboost_system-vc120-mt-gd-1_55.lib" "C:/OgreSDK/boost/lib/libboost_program_options-vc120-mt-gd-1_55.lib")
 MESSAGE(STATUS "Boost_LIBRARIES=${Boost_LIBRARIES}")
 MESSAGE(STATUS ${OGRE_Overlay_LIBRARIES})
 
-target_link_libraries(Whitedrop ${TARGET_LIBRARIES})
+target_link_libraries(Whitedrop ${TARGET_LIBRARIES} ${Boost_LIBRARIES})
  
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin)
 # file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/media)

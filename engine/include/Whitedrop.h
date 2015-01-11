@@ -182,7 +182,7 @@ namespace Whitedrop {
 	 * 
 	 * @return the value or the defaultValue
 	 */
-	std::string getConfig(std::string key, std::string defaultValue);,
+	std::string getConfig(std::string key, std::string defaultValue);
 	
 	/**
 	 * @brief init world

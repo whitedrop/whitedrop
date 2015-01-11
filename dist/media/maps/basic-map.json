@@ -2,38 +2,19 @@
 	"worldName": "Basic Map",
 	"worldVersion": "0.1.0",
 	"entities": [
-	],
-	"objects": [
 		{
-			"lods": [
-				{"LOD": "0"},
-				{"LOD": "1"},
-				{
-					"LOD": "2",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "3",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "4",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "5",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "6",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "7",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "8",
-					"mesh": "Cube.mesh",
-				},{
-					"LOD": "9",
-					"mesh": "Cube.mesh",
-				},
-			]
+			"id": "0x2A",
+			"mesh": "cube.mesh",
+			"posX": "0",
+			"posY": "0",
+			"posZ": "0",
+			"dimX": "10",
+			"dimY": "10",
+			"dimZ": "10",
+			"chunkX": "1",
+			"chunkY": "1",
+			"minLOD": "8",
+			"maxLOD": "5"
 		}
 	]
 }
