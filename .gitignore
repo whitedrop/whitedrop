@@ -4,5 +4,9 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 build_win32/
-dist/
+build/
+dist/media/models
+dist/media/materials
+dist/media/packs
+dist/media/volumeTerrain
 docs/

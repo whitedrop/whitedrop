@@ -9,7 +9,9 @@
 #include "Vector3.h"
 #include "World.h"
 #include "Entity.h"
-
+#include "LOD.h"
+#include <map>
+#include <utility>
 /**
  * @namespace Whitedrop
  */
@@ -43,8 +45,10 @@ namespace Whitedrop {
 			 * @details do it before go()
 			 * 
 			 * @param ent the entity to add
+			 * @param x the x index for chunk
+			 * @param y the y coordinate of chunk
 			 */
-			virtual void addEntity(Entity ent);
+			virtual void addEntity(Entity ent, int x, int y);
 
 			/**
 			 * @brief setup the engine
@@ -67,6 +71,8 @@ namespace Whitedrop {
 			 * @deprecated
 			 */
 			virtual void setupWorld();
+
+			virtual Position2 getCameraPosition();
 			
 		protected:
 
@@ -154,6 +160,30 @@ namespace Whitedrop {
 	
 			World mWorld;
 	};
+
+	static std::map<std::string, std::string> configuration;
+
+
+	/**
+	 * @brief change a setting
+	 * @details set the configuration's map value for given key
+	 * Used to set chunk size, LOD factor...
+	 * 
+	 * @param key the key
+	 * @param value tthe value
+	 */
+	void setConfig(std::string key, std::string value);
+
+	/**
+	 * @brief access a key in config
+	 * 
+	 * @param key the param key
+	 * @param defaultValue the value to return if no suitable value was found
+	 * 
+	 * @return the value or the defaultValue
+	 */
+	std::string getConfig(std::string key, std::string defaultValue);
+	
 	/**
 	 * @brief init world
 	 * @return done?
@@ -166,16 +196,19 @@ namespace Whitedrop {
 	void run();
 
 	/**
-	 * @brief add an entity to scene
-	 * @details create the entity and add it to the engine therefore the world
+	 * @brief add an entity to the world
+	 * @details and to a chunk
 	 * 
-	 * @param mesh the mesh name
-	 * @param id the UNIQUE id
-	 * @param position the Whitedrop::Vector3 position
-	 * @param dims the Vector3 about dims
+	 * @param id the entity unique id. Thje node name will be <id>_n
+	 * @param position its position in the world
+	 * @param dims its dimensions, in meter
+	 * @param lods a pair of two ints. The minimum display LOD and max
 	 * @param material the material name
+	 * @param mesh the mesh name
+	 * @param chunkX the chunkx coordinate
+	 * @param chunkY the y coordinate of chunk
 	 */
-	void spawnEntity(std::string mesh, std::string id, Vector3 position, Vector3 dims, std::string material);
+	void spawnEntity(std::string id, Vector3 position, Vector3 dims, std::pair<int, int> lods, std::string material, std::string mesh, int chunkX, int chunkY);
 
 
 }

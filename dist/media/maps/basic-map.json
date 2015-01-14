@@ -1,0 +1,20 @@
+{
+	"worldName": "Basic Map",
+	"worldVersion": "0.1.0",
+	"entities": [
+		{
+			"id": "0x2A",
+			"mesh": "cube.mesh",
+			"posX": "0",
+			"posY": "0",
+			"posZ": "0",
+			"dimX": "10",
+			"dimY": "10",
+			"dimZ": "10",
+			"chunkX": "1",
+			"chunkY": "1",
+			"minLOD": "8",
+			"maxLOD": "5"
+		}
+	]
+}

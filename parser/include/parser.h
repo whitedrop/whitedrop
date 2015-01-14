@@ -4,6 +4,11 @@
 #include <vector>
 
 namespace Parser {
+	struct Vector2
+	{
+		float x;
+		float y;
+	};
 	struct Vector3
 	{
 		float x;
@@ -13,10 +18,12 @@ namespace Parser {
 	struct Entity
 	{
 		Vector3 		position;
+		Vector2 		chunk;
 		Vector3			dimensions;
 		std::string 	id;
 		std::string 	mesh;
 		std::string		material;
+		Vector2 lods;
 	};
 	struct World
 	{
