@@ -16,6 +16,5 @@ namespace Scribe
     V8Interface();
     ~V8Interface();
     void initialize();
-  
   };
 }

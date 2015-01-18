@@ -19,16 +19,11 @@
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
 
-#pragma comment(lib, "winmm.lib")
 #include <shellapi.h>
 #endif
 
-// #include "parser/include/parser.h"
-// #include "engine/include/Whitedrop.h"
-#include <string>
-#include <include/v8.h>
-#include <include/libplatform/libplatform.h>
-using namespace v8;
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 
 int WINAPI WinMain ( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd )
 #else 
@@ -122,8 +117,6 @@ int main(int argc, char* argv[])
 	// 		Whitedrop::run();
 	// 	}
 	// }
-
-
 
     return 0;
 }

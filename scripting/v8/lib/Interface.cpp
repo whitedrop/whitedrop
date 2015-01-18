@@ -8,7 +8,6 @@ namespace Scribe
   }
   V8Interface::~V8Interface()
   {
-
   // Dispose the isolate and tear down V8.
     isolate->Dispose();
     V8::Dispose();
@@ -52,7 +51,9 @@ namespace Scribe
       Context::Scope context_scope(context);
 
     // Create a string containing the JavaScript source code.
+
       Local<String> source = String::NewFromUtf8(isolate, "../media/scripts/hello.js");
+
 
     // Compile the source code.
       Local<Script> script = Script::Compile(source);
