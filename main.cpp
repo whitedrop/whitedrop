@@ -2,7 +2,8 @@
 // #include "parser/include/parser.h"
 // #include "engine/include/Whitedrop.h"
 #include <include/v8.h>
-#include <include/libplatform/libplatform.h>#include "parser/include/parser.h"
+#include <include/libplatform/libplatform.h>
+#include "parser/include/parser.h"
 #include "engine/include/Whitedrop.h"
 #include <string>
 #include <utility>
@@ -14,6 +15,7 @@
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
 
+#pragma comment(lib, "winmm.lib")
 #include <shellapi.h>
 #endif
 
