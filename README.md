@@ -32,7 +32,7 @@ You can use Doxygen to automatically generate docs. I'll add the Dox file soon
 
 ## Frequently Asked Question
 
-### It's not the first attempt. How should it succeed when others failed?
+### It's not the first attempt. How should it succeed when some others failed?
 
 To answer this question, I'm going to list the common reason of failures:
 
