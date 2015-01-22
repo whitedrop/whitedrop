@@ -9,6 +9,25 @@ namespace Scribe
   V8Interface::~V8Interface()
   {
 
+  // Dispose the isolate and tear down V8.
+    isolate->Dispose();
+    V8::Dispose();
+    V8::ShutdownPlatform();
+    delete platform;
+  }
+  std::string readFile(std::string mapFile)
+  {
+
+      std::string line;
+      std::ifstream map (mapFile);
+      if (map.is_open())
+      {
+        while ( getline (map, line) )
+        {
+          contents += line + '\n';
+        }
+        map.close();
+      }
   }
   void V8Interface::initialize()
   {
@@ -19,7 +38,7 @@ namespace Scribe
     V8::Initialize();
 
   // Create a new Isolate and make it the current one.
-    Isolate* isolate = Isolate::New();
+   mIsolate = Isolate::New();
     {
       Isolate::Scope isolate_scope(isolate);
 
@@ -33,7 +52,7 @@ namespace Scribe
       Context::Scope context_scope(context);
 
     // Create a string containing the JavaScript source code.
-      Local<String> source = String::NewFromUtf8(isolate, "'Hello' + ', World!'");
+      Local<String> source = String::NewFromUtf8(isolate, "../media/scripts/hello.js");
 
     // Compile the source code.
       Local<Script> script = Script::Compile(source);
@@ -46,10 +65,5 @@ namespace Scribe
       printf("%s\n", *utf8);
     }
 
-  // Dispose the isolate and tear down V8.
-    isolate->Dispose();
-    V8::Dispose();
-    V8::ShutdownPlatform();
-    delete platform;
   }
 }
