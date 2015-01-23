@@ -1,6 +1,9 @@
 
-#include <include/v8.h>
-#include <include/libplatform/libplatform.h>
+// #include <v8.h>
+// #include <libplatform/libplatform.h
+#include <string>
+#include <node.h>
+#include <iostream>
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
 
