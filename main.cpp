@@ -5,6 +5,9 @@
 #include "engine/include/Whitedrop.h"
 #include <string>
 #include <utility>
+
+#define BOOST_ALL_NO_LIB
+
 #include <boost/program_options.hpp>
 
 #include <iostream>

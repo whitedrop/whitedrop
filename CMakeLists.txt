@@ -18,6 +18,11 @@ cmake_minimum_required(VERSION 2.6)
  
 project(Whitedrop)
 
+# ExternalProject_Add(OgreDeps PREFIX third_party/ogredeps GIT_REPOSITORY https://bitbucket.org/cabalistic/ogredeps)
+
+
+
+
 add_compile_options(-std=c++11)
 set(DIR_TO_INCLUDE)
 add_subdirectory(./engine/ engine)
@@ -32,7 +37,11 @@ include_directories(${DIR_TO_INCLUDE})
 add_executable(Whitedrop WIN32 ${HDRS} ${SRCS})
  
 set_target_properties(Whitedrop PROPERTIES DEBUG_POSTFIX _d)
-set(Boost_LIBRARIES "C:/OgreSDK/boost/lib/libboost_system-vc120-mt-gd-1_55.lib" "C:/OgreSDK/boost/lib/libboost_program_options-vc120-mt-gd-1_55.lib")
+
+set(Boost_USE_MULTITHREADED OFF)
+set(Boost_USE_STATIC_LIBS  ON)
+find_package(Boost COMPONENTS system program_options) 
+
 MESSAGE(STATUS "Boost_LIBRARIES=${Boost_LIBRARIES}")
 MESSAGE(STATUS ${OGRE_Overlay_LIBRARIES})
 
