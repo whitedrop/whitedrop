@@ -5,6 +5,9 @@ Whitedrop Engine
 The Whitedrop engine is an open source 3D Game engine based on, for the official release, **OGRE** and **PhysX**. It aims at providing  a complete API for thos who want to create game with javascript (usingV8), Lua (LuaJIT) and C# (Mono).
 
 - [Whitedrop structure](#whitedrop-structure)
+- [How to build](#how-to-build)
+    - [On windows](#on-windows)
+    - [On Linux](#on-linux)
 - [Getting the documentation](#getting-the-documentation)
 - [Frequently Asked Question](#frequently-asked-question)
     - [It's not the first attempt. How should it succeed when others failed?](#its-not-the-first-attempt-how-should-it-succeed-when-others-failed)
@@ -25,6 +28,32 @@ The Whitedrop engine is an open source 3D Game engine based on, for the official
  - *Quark Engine. The particule engine*
 
 *Not implemented*
+
+## How to build
+
+### On windows
+
+Prequisites:
+
+ - Git and Mercurial (yes, both!)
+ - CMake latest version
+ - Python 2.7
+ - Visual Studio 2013 for Windows Desktop, or
+ - Visual Studio Express 2013 for Windows Desktop
+
+Open cmd somewhere. Just run
+
+```bat
+$ git clone git@github.com:whitedrop/whitedrop.git
+$ cd whitedrop
+$ configure "Visual Studio 12 2013"
+```
+
+This will build OGRE, V8 and so. Then you can build using `build.bat`.
+
+### On linux
+
+Can't tell for the moment, take a look at configure.bat.
 
 ## Getting the documentation
 
