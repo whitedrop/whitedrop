@@ -46,8 +46,11 @@ set(V8_LIBRARY_DIR_DBG ${CMAKE_SOURCE_DIR}/third_party/io.js/Debug )
 set(DIR_TO_INCLUDE
 	${DIR_TO_INCLUDE}
 	${CMAKE_SOURCE_DIR}/third_party/io.js/src/
-	${CMAKE_SOURCE_DIR}/third_party/deps/v8/include
-
+	${CMAKE_SOURCE_DIR}/third_party/io.js/deps/v8/include
+	# So both works
+	${CMAKE_SOURCE_DIR}/third_party/io.js/deps/v8/
+	${CMAKE_SOURCE_DIR}/third_party/io.js/deps/uv/include
+	${CMAKE_SOURCE_DIR}/third_party/io.js/deps/cares/include
 	# ${V8_INCLUDE_DIR}
 	PARENT_SCOPE
 )
@@ -56,12 +59,14 @@ set(DIR_TO_INCLUDE
  set(HDRS
  	${HDRS}
  	${CMAKE_CURRENT_SOURCE_DIR}/include/Interface.h
+ 	${CMAKE_CURRENT_SOURCE_DIR}/include/Utils.h
  	PARENT_SCOPE
  )
 
  set(SRCS
  	${SRCS}
- 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Interface.cpp
+ 	${CMAKE_CURRENT_SOURCE_DIR}/src/Interface.cpp
+ 	${CMAKE_CURRENT_SOURCE_DIR}/src/Utils.cpp
  	PARENT_SCOPE
   )
 # =======

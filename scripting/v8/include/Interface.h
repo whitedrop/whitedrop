@@ -1,9 +1,13 @@
+#ifndef V8_INTERFACE_H
+#define V8_INTERFACE_H
 
-// #include <v8.h>
-// #include <libplatform/libplatform.h
+#include <node_v8_platform.h>
+#include <uv.h>
 #include <string>
 #include <node.h>
 #include <iostream>
+#include "../include/Utils.h"
+
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
 
@@ -19,5 +23,8 @@ namespace Scribe
     V8Interface();
     ~V8Interface();
     void initialize();
+   protected:
+   	Isolate* mIsolate;
   };
 }
+#endif
