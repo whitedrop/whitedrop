@@ -7,6 +7,7 @@
 #include <node.h>
 #include <iostream>
 #include "../include/Utils.h"
+#include "../include/Event.h"
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>

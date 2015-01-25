@@ -56,6 +56,7 @@ namespace Scribe
 			Handle<ObjectTemplate> globalTemplate = ObjectTemplate::New();
 
 			Utils::inject(globalTemplate, mIsolate);
+			Event::inject(globalTemplate, mIsolate);
 
 			Local<Context> context = Context::New(mIsolate, NULL, globalTemplate);
 

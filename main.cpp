@@ -3,9 +3,10 @@
 // #include "engine/include/Whitedrop.h"
 
 
-#include "parser/include/parser.h"
-#include "engine/include/Whitedrop.h"
+// #include "parser/include/parser.h"
+// #include "engine/include/Whitedrop.h"
 #include <string>
+#include <functional>
 #include <utility>
 
 #define BOOST_ALL_NO_LIB
@@ -13,14 +14,15 @@
 #include <boost/program_options.hpp>
 
 #include <iostream>
-#include <iterator>
-
+//#include <iterator>
 #include "scripting/v8/include/Interface.h"
+#include "common/include/Event.h"
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include <windows.h>
 
 #include <shellapi.h>
 #endif
+
 
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
@@ -35,6 +37,16 @@ int main(int argc, char* argv[])
 
 	Scribe::V8Interface v8Interface = Scribe::V8Interface();
 	v8Interface.initialize();
+
+ 	for(Whitedrop::WorldEvent* event : Whitedrop::worldEvents)
+ 	{
+ 		event->onStart();
+ 	}
+	// if(Whitedrop::init())
+ // 	{
+	// 	Whitedrop::run();
+
+	// }
 
 	// #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 	// 	int argc;

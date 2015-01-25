@@ -60,12 +60,14 @@ set(DIR_TO_INCLUDE
  	${HDRS}
  	${CMAKE_CURRENT_SOURCE_DIR}/include/Interface.h
  	${CMAKE_CURRENT_SOURCE_DIR}/include/Utils.h
+ 	${CMAKE_CURRENT_SOURCE_DIR}/include/Event.h
  	PARENT_SCOPE
  )
 
  set(SRCS
  	${SRCS}
  	${CMAKE_CURRENT_SOURCE_DIR}/src/Interface.cpp
+ 	${CMAKE_CURRENT_SOURCE_DIR}/src/Event.cpp
  	${CMAKE_CURRENT_SOURCE_DIR}/src/Utils.cpp
  	PARENT_SCOPE
   )
