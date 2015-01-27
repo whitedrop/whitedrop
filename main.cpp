@@ -35,8 +35,8 @@ int main(int argc, char* argv[])
 {
 
 
-	Scribe::V8Interface v8Interface = Scribe::V8Interface();
-	v8Interface.initialize();
+	Scribe::V8Interface* v8Interface = Scribe::V8Interface::getCurrent();
+	v8Interface->initialize();
 
  	for(Whitedrop::WorldEvent* event : Whitedrop::worldEvents)
  	{

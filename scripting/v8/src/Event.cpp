@@ -1,5 +1,6 @@
 #include "../include/Event.h"
 #include <iostream>
+#include "../include/Interface.h"
 namespace Scribe {
 	namespace Event {
 		typedef Local<Function> callback;
@@ -15,8 +16,9 @@ namespace Scribe {
 				String::Utf8Value event(args[0]->ToString());
 				if (event.length())
 				{  
-					Isolate* isolate = Isolate::GetCurrent();
+					Isolate* isolate = V8Interface::getCurrent()->getIsolate();
  					
+					Locker locker(isolate);
  					HandleScope scope(isolate);
 
   					Local<Function> cb = Local<Function>::Cast(args[1]);
@@ -36,7 +38,10 @@ namespace Scribe {
 		void trigger(std::string event)
 		{
 
-			Isolate* isolate = Isolate::GetCurrent();
+			Isolate* isolate = V8Interface::getCurrent()->getIsolate();
+ 			
+			Locker locker(isolate);
+ 			HandleScope scope(isolate);
 			
 			if(events.count(event))
 			{

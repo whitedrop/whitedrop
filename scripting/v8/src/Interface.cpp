@@ -2,6 +2,7 @@
 
 namespace Scribe
 {
+	V8Interface* V8Interface::currentInterface = NULL;
 	V8Interface::V8Interface()
 	{
 
@@ -14,6 +15,20 @@ namespace Scribe
 		//V8::ShutdownPlatform();
 		//delete platform;
 	}
+	V8Interface* V8Interface::getCurrent()
+	{
+		if(!currentInterface)
+		{
+			currentInterface = new V8Interface();
+		}
+		return currentInterface;
+	}
+
+	Isolate* V8Interface::getIsolate() const
+	{
+		return mIsolate;
+	}
+
 	std::string readFile(std::string mapFile)
 	{
 
@@ -46,6 +61,7 @@ namespace Scribe
 		// Create a new Isolate and make it the current one.
 		mIsolate = Isolate::New();
 		{
+			Locker locker(mIsolate);
 			Isolate::Scope isolate_scope(mIsolate);
 
 			// Create a stack-allocated handle scope.

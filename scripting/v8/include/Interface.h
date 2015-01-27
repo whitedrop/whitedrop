@@ -23,9 +23,13 @@ namespace Scribe
   public:
     V8Interface();
     ~V8Interface();
+    static V8Interface* getCurrent();
+    Isolate* getIsolate() const;
     void initialize();
    protected:
+   	static V8Interface* currentInterface;
    	Isolate* mIsolate;
   };
+
 }
 #endif
