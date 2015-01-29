@@ -3,7 +3,7 @@
 #include "../include/Interface.h"
 namespace Scribe {
 	namespace Event {
-		typedef Local<Function> callback;
+		typedef Persistent<Function, CopyablePersistentTraits<Function>> callback;
 		typedef std::vector<callback> callbacks;
 
 		std::map<std::string, callbacks> events;
@@ -21,16 +21,17 @@ namespace Scribe {
 					Locker locker(isolate);
  					HandleScope scope(isolate);
 
-  					Local<Function> cb = Local<Function>::Cast(args[1]);
-
-					if(!events.count(*event))
+					callback cb = callback(isolate, Local<Function>::Cast(args[1]));
+					
+					 std::cout << "adding........" << std::endl;
+					 if(!events.count(*event))
+					 {
+				 	events[*event] = callbacks({ cb });
+					 } 
+					 else 
 					{
-						events[*event] = callbacks({ cb });
-					} 
-					else 
-					{
-						events.find(*event)->second.push_back(cb);
-					}
+					 	events.find(*event)->second.push_back(cb);
+					 }
 				}
 			}
 
@@ -46,7 +47,10 @@ namespace Scribe {
 			if(events.count(event))
 			{
 				for(callback cb : events.find(event)->second)
-					cb->Call(isolate->GetCurrentContext()->Global(), 0, {});
+				{
+					Local<Function> local = Local<Function>::New(isolate, cb);
+					local->Call(isolate->GetCurrentContext()->Global(), 0, {});
+				}
 			}
 		}
 
