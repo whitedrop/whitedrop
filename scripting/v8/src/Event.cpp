@@ -17,21 +17,21 @@ namespace Scribe {
 				if (event.length())
 				{  
 					Isolate* isolate = V8Interface::getCurrent()->getIsolate();
- 					
-					Locker locker(isolate);
- 					HandleScope scope(isolate);
-
-					callback cb = callback(isolate, Local<Function>::Cast(args[1]));
 					
-					 std::cout << "adding........" << std::endl;
-					 if(!events.count(*event))
-					 {
-				 	events[*event] = callbacks({ cb });
-					 } 
-					 else 
+					Locker locker(isolate);
+					HandleScope scope(isolate);
+
+					callback cb;
+					cb.Reset(isolate, Local<Function>::Cast(args[1]));
+					
+					if(!events.count(*event))
 					{
-					 	events.find(*event)->second.push_back(cb);
-					 }
+						events[*event] = callbacks({ cb });
+					} 
+					else 
+					{
+						events.find(*event)->second.push_back(cb);
+					}
 				}
 			}
 
@@ -40,9 +40,9 @@ namespace Scribe {
 		{
 
 			Isolate* isolate = V8Interface::getCurrent()->getIsolate();
- 			
+			
 			Locker locker(isolate);
- 			HandleScope scope(isolate);
+			HandleScope scope(isolate);
 			
 			if(events.count(event))
 			{
@@ -79,3 +79,4 @@ namespace Scribe {
 	}
 
 }
+		
