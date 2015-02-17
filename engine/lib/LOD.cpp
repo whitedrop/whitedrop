@@ -1,4 +1,5 @@
 #include "../include/LOD.h"
+#include "../include/base.h"
 #include <iostream>
 
 namespace Whitedrop {
@@ -8,7 +9,7 @@ namespace Whitedrop {
 	}
 	LevelOfDetail::LevelOfDetail(LODDistance dist)
 	{
-		int level = round(10 - exp(dist.distance * getLODFactor()));
+		int level = round(10 - exp256(dist.distance * getLODFactor()));
 		if( level < 0 )
 			level = 0;
 		if( level > 10 )

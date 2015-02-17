@@ -32,7 +32,7 @@
 #endif
 
 
-static float fastSqrt( float x )
+static inline float fastSqrt( float x )
 {
 // 	long i;
 // 	float x2, y;
@@ -56,6 +56,42 @@ static float fastSqrt( float x )
   i >>= 1;
 
   return *(float*) &i;
+}
+
+/**
+ * @brief Faster exp() function using 256 iterations (n = 256)
+ * @details This function is 360 times faster than math.h's 
+ * But less accurate, mostly for large numbers
+ * See http://codingforspeed.com/using-faster-exponential-approximation/
+ * for more details
+ * 
+ * @param x the number
+ * @return the exp
+ */
+static inline double exp256(double x) {
+  x = 1.0 + x / 256.0;
+  x *= x; x *= x; x *= x; x *= x;
+  x *= x; x *= x; x *= x; x *= x;
+  return x;
+}
+
+
+/**
+ * @brief Faster exp() function using 1024 iterations (n = 1024)
+ * @details This function is 330 times faster than math.h's 
+ * But less accurate, mostly for large numbers
+ * See http://codingforspeed.com/using-faster-exponential-approximation/
+ * for more details
+ * 
+ * @param x the  number
+ * @return the exp
+ */
+static inline double exp1024(double x) {
+  x = 1.0 + x / 1024;
+  x *= x; x *= x; x *= x; x *= x;
+  x *= x; x *= x; x *= x; x *= x;
+  x *= x; x *= x;
+  return x;
 }
 struct Position2
 {
