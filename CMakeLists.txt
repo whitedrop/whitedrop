@@ -23,10 +23,12 @@ project(Whitedrop)
 
 
 
+add_compile_options(/MP)
 add_compile_options(-std=c++11)
 set(DIR_TO_INCLUDE)
 add_subdirectory(./engine/ engine)
 add_subdirectory(./parser/ parser)
+add_subdirectory(./quantum/ quantum)
 set(SRCS
 	${SRCS}
 	main.cpp
