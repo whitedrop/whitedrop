@@ -23,16 +23,24 @@ project(Whitedrop)
 
 
 
-add_compile_options(/MP)
-add_compile_options(-std=c++11)
 set(DIR_TO_INCLUDE)
 add_subdirectory(./engine/ engine)
 add_subdirectory(./parser/ parser)
 add_subdirectory(./quantum/ quantum)
+
+
+set(QUANTUM_ENGINE DEFAULT)
+
+configure_file( config.h.in ${CMAKE_BINARY_DIR}/generated/config.h )
+
 set(SRCS
 	${SRCS}
 	main.cpp
 )
+set(DIR_TO_INCLUDE 
+	${DIR_TO_INCLUDE} 
+	${CMAKE_BINARY_DIR}/generated/ 
+	./common/)
 include_directories(${DIR_TO_INCLUDE})
 
 add_executable(Whitedrop WIN32 ${HDRS} ${SRCS})
@@ -60,11 +68,13 @@ if(WIN32 AND NOT MINGW)
 endif(WIN32 AND NOT MINGW)
 
 if(MINGW OR UNIX)
+	add_compile_options(-std=c++11)
 	set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/dist/bin)
 endif(MINGW OR UNIX)
  
 if(WIN32)
  
+	add_compile_options(/MP)
 	install(TARGETS Whitedrop
 		RUNTIME DESTINATION bin
 		CONFIGURATIONS All)

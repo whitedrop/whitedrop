@@ -15,6 +15,7 @@
 #include <memory>
 #include <utility>
 #include "LOD.h"
+#include <QuantumEntity.h>
 
 /// @namespace Whitedrop
 namespace Whitedrop {
@@ -109,6 +110,7 @@ namespace Whitedrop {
 		std::shared_ptr<Chunk>  mChunk;
 		std::string				mMesh;
 		std::string				mMaterial;
+		Quantum::QEntity 		mQEntity;
 	};
 }
 
