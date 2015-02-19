@@ -1,5 +1,7 @@
 #include "../include/Entity.h"
 #include "../include/Chunk.h"
+
+#include <Common.h>
 #include <iostream>
 namespace Whitedrop {
 	
@@ -16,6 +18,8 @@ namespace Whitedrop {
 		mMesh = mesh;
 		mDrawDistances = drawDistances;
 		mChunk = chunk;
+		mQEntity = Quantum::QEntity(Common::Position(position.x, position.y, position.z),
+			Common::Dimensions(dimensions.x, dimensions.y, dimensions.z));
 	}
 
 	Entity::~Entity(void)
@@ -102,6 +106,7 @@ namespace Whitedrop {
 	}
 	bool Entity::update(void)
 	{
+		mQEntity.update();
 		return(true);
 	}
 

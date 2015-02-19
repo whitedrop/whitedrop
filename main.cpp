@@ -1,5 +1,7 @@
 #include "parser/include/parser.h"
 #include "engine/include/Whitedrop.h"
+#include "quantum/include/QuantumEngine.h"
+
 #include <string>
 #include <utility>
 
