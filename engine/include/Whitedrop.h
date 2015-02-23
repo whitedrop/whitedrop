@@ -8,7 +8,7 @@
 #include "base.h"
 #include "Vector3.h"
 #include "World.h"
-#include "Entity.h"
+#include "StaticEntity.h"
 #include "LOD.h"
 #include <map>
 #include <utility>
@@ -41,14 +41,14 @@ namespace Whitedrop {
 			virtual void go();
 
 			/**
-			 * @brief Adds an entity to the engine's main world
+			 * @brief Adds a static entity to the engine's main world
 			 * @details do it before go()
 			 * 
 			 * @param ent the entity to add
 			 * @param x the x index for chunk
 			 * @param y the y coordinate of chunk
 			 */
-			virtual void addEntity(Entity ent, int x, int y);
+			virtual void addStaticEntity(StaticEntity ent, int x, int y);
 
 			/**
 			 * @brief setup the engine

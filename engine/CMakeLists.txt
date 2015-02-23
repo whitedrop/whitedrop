@@ -87,6 +87,7 @@ set(HDRS
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Whitedrop.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/base.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Entity.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/StaticEntity.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/World.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Vector3.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/LOD.h
@@ -97,7 +98,7 @@ set(HDRS
 set(SRCS
 	${SRCS}
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Whitedrop.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/lib/Entity.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/StaticEntity.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/World.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/Vector3.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/LOD.cpp

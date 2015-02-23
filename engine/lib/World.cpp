@@ -30,9 +30,9 @@ namespace Whitedrop {
 	{
 		return mSceneMgr;
 	}
-	void World::addEntity(Entity entity, std::shared_ptr<Chunk> chunk)
+	void World::addStaticEntity(StaticEntity entity, std::shared_ptr<Chunk> chunk)
 	{
-		chunk->addEntity(entity);
+		chunk->addStaticEntity(entity);
 	}
 	
 	void World::setup(void)
