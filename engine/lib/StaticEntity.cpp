@@ -1,4 +1,4 @@
-#include "../include/Entity.h"
+#include "../include/StaticEntity.h"
 #include "../include/Chunk.h"
 #include <iostream>
 namespace Whitedrop {
@@ -7,7 +7,7 @@ namespace Whitedrop {
 
 	// -----------------------------------------------------------------------------------
 
-	Entity::Entity(std::string id, std::string mesh, std::string material, Ogre::Vector3 dimensions, Ogre::Vector3 position, lod_couple drawDistances, std::shared_ptr<Chunk> chunk)
+	StaticEntity::StaticEntity(std::string id, std::string mesh, std::string material, Ogre::Vector3 dimensions, Ogre::Vector3 position, lod_couple drawDistances, std::shared_ptr<Chunk> chunk)
 	{
 		mId = id;
 		mDimensions = dimensions;
@@ -18,12 +18,12 @@ namespace Whitedrop {
 		mChunk = chunk;
 	}
 
-	Entity::~Entity(void)
+	StaticEntity::~StaticEntity(void)
 	{
 
 	}
 
-	Entity::Entity(const Entity &ref)
+	StaticEntity::StaticEntity(const StaticEntity &ref)
 	{
 		mMaterial = ref.mMaterial;
 		mMesh = ref.mMesh;
@@ -33,7 +33,7 @@ namespace Whitedrop {
 		mPosition = ref.mPosition;
 		mChunk = ref.mChunk;
 	}
-	Entity& Entity:: operator=(Entity ref)
+	StaticEntity& StaticEntity::operator=(StaticEntity ref)
 	{
 		mMaterial = ref.mMaterial;
 		mMesh = ref.mMesh;
@@ -45,14 +45,14 @@ namespace Whitedrop {
 		return *this;
 
 	}
-	void Entity::attachToChunk(std::shared_ptr<Chunk> chunk)
+	void StaticEntity::attachToChunk(std::shared_ptr<Chunk> chunk)
 	{
 		if( chunk != NULL )
 		{
 			mChunk = chunk;
 		}
 	}
-	void Entity::setup(Ogre::SceneManager* sceneMgr)
+	void StaticEntity::setup(Ogre::SceneManager* sceneMgr)
 	{
 		LOD chunkLOD = mChunk->getLOD();
 
@@ -71,7 +71,7 @@ namespace Whitedrop {
 				if( mMaterial != "")
 					mEntity->setMaterialName(mMaterial);
 
-			    	// Create a SceneNode and attach the Entity to it
+			    	// Create a SceneNode and attach the StaticEntity to it
 				if(mNode == NULL)
 				{
 					mNode = sceneMgr->getRootSceneNode()->createChildSceneNode(mId + "_n");
@@ -88,7 +88,7 @@ namespace Whitedrop {
 		// Nothing should be drawn
 		} else {
 
-			// But there's already an entity
+			// But there's already an Staticentity
 			if( mEntity != NULL ) 
 			{
 				mNode->detachObject(mId);
@@ -100,7 +100,7 @@ namespace Whitedrop {
 
 
 	}
-	bool Entity::update(void)
+	bool StaticEntity::update(void)
 	{
 		return(true);
 	}

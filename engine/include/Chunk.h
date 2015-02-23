@@ -13,7 +13,7 @@
 #include "base.h"
 #include "World.h"
 #include "LOD.h"
-#include "Entity.h"
+#include "StaticEntity.h"
 #include "World.h"
 #include "Whitedrop.h"
 #include <cmath>
@@ -109,7 +109,7 @@ namespace Whitedrop {
 		 * 
 		 * @param ent the entity to add
 		 */
-		virtual void addEntity(Entity ent);
+		virtual void addStaticEntity(StaticEntity ent);
 
 		/**
 		 * @brief Get the chunk's distance from player
@@ -126,7 +126,7 @@ namespace Whitedrop {
 
 	protected:
 		World* mWorld;
-		std::vector<Entity> mStaticEntities;
+		std::vector<StaticEntity> mStaticEntities;
 		int mPosX;
 		int mPosY;
 		LevelOfDetail mLOD;

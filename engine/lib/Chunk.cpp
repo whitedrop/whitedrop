@@ -37,7 +37,7 @@ namespace Whitedrop {
 		return *this;
 	}
 
-	void Chunk::addEntity(Entity ent)
+	void Chunk::addStaticEntity(StaticEntity ent)
 	{
 		mStaticEntities.push_back(ent);
 	}

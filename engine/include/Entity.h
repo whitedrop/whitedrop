@@ -27,56 +27,20 @@ namespace Whitedrop {
 	*/
 	class Entity {
 	public:
-		/**
-		 * @brief Create static entity
-		 * @details creates a static entity instance according to the mesh and the id, the position
-		 * This needs to be attached to a World after!
-		 * The material name is not the file name but the material name!
-		 * @ref WorldPage
-		 * @ref ObjectData
-		 * @param id an unique identifier for the object, shortest as possible
-		 * @param dimensions an Ogre::Vector3 which contains the dimensions in meter
-		 * @param position the Vector3 which contains it position 
-		 * @param data a pointer to the corresponding ObjectData
-		 * @param chunk (optionnal) the chunk which this entity is attached to
-		 */
-		Entity(std::string id, std::string material, std::string mesh, Ogre::Vector3 dimensions, Ogre::Vector3 position, lod_couple drawDistances, std::shared_ptr<Chunk> chunk = NULL);
 		
-		/**
-		 * @brief The copy constructor
-		 * @details A copy constr
-		 * 
-		 * @param ref the Entity to be copied from
-		 */
-		Entity(const Entity &ref);
-
-		/**
-		 * @brief The assignement operator
-		 * @details 
-		 * 
-		 * @param ent the entity to be copied
-		 */
-		Entity& operator=(const Entity ent);
-
-		/**
-		 * @brief destrctor
-		 * @details
-		 */
-		virtual ~Entity(void);
-
 		/**
 		 * @brief a constance type of the entity
 		 * @details depends of the class. 
 		 * May contain STATIC, DYNAMIC or ETHERAL
 		 */
-		const std::string type = "STATIC";
+		const std::string type = "";
 
 		/**
 		 * @brief set the entity's chunk
 		 * 
 		 * @param chunk the chunk
 		 */
-		virtual void attachToChunk(std::shared_ptr<Chunk> chunk);
+		virtual void attachToChunk(std::shared_ptr<Chunk> chunk) = 0;
 		
 		/**
 		 * @brief Attach the entity to specified sceneManager
@@ -85,7 +49,7 @@ namespace Whitedrop {
 		 * scale it to match dimensions and translate the node to pos
 		 * @param sceneMgr the scene manager to use
 		 */
-		virtual void setup(Ogre::SceneManager* sceneMgr);
+		virtual void setup(Ogre::SceneManager* sceneMgr) = 0;
 
 		/**
 		 * @brief the update method
@@ -97,7 +61,7 @@ namespace Whitedrop {
 		 * 2) Update the OgreEntity position and rotation from the previous actor
 		 * @return whether it was successful or not, if falsey engine should stop
 		 */
-		virtual bool update(void);
+		virtual bool update(void) = 0;
 
 	protected:
 		std::string 			mId;

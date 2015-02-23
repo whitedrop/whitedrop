@@ -7,7 +7,7 @@
 #define _WORLD_H_
 
 #include "base.h"
-#include "Entity.h"
+#include "StaticEntity.h"
 #include <map>
 #include <memory>
 
@@ -54,7 +54,7 @@ namespace Whitedrop {
 			 * @param entity the entity
 			 * @param Chunk a pointer to the entity's chunk
 			 */
-			virtual void addEntity(Entity entity, std::shared_ptr<Chunk> chunk);
+			virtual void addStaticEntity(StaticEntity entity, std::shared_ptr<Chunk> chunk);
 	
 			/**
 			 * @brief setup world
