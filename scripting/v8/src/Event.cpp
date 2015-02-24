@@ -3,7 +3,7 @@
 #include "../include/Interface.h"
 namespace Scribe {
 	namespace Event {
-		typedef Persistent<Function, CopyablePersistentTraits<Function>> callback;
+		typedef Persistent<Function> callback;
 		typedef std::vector<callback> callbacks;
 
 		std::map<std::string, callbacks> events;
@@ -21,8 +21,13 @@ namespace Scribe {
 					Locker locker(isolate);
 					HandleScope scope(isolate);
 
-					callback cb;
-					cb.Reset(isolate, Local<Function>::Cast(args[1]));
+
+					Handle<Function> args1 = Handle<Function>::Cast(args[1]);
+
+					Persistent<Function> pfn(isolate, args1);
+
+					callback cb = callback(isolate, pfn);
+
 					
 					if(!events.count(*event))
 					{
